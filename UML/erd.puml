@@ -1,0 +1,75 @@
+@startuml ERD
+hide circle
+skinparam classAttributeIconSize 0
+skinparam Linetype ortho
+skinparam class {
+    BackgroundColor PaleGreen
+    BorderColor DarkGreen
+    ArrowColor DarkGreen
+}
+entity "User" {
+    +id: int
+    +username: string
+    +email: string
+    +password: string
+    +role: string
+    +status: string
+}
+
+entity "Volunteer" {
+    +id: int (PK)
+    +participationHistory: list
+}
+
+entity "Organization" {
+    +id: int (PK)
+    +publishedOpportunities: list
+}
+
+entity "Admin" {
+    +id: int (PK)
+    +userManagement: list
+}
+
+entity "Opportunity" {
+    +id: int (PK)
+    +title: string
+    +description: string
+    +location: string
+    +duration: string
+}
+
+entity "Candidature" {
+    +id: int (PK)
+    +status: string
+    +submissionDate: date
+}
+
+entity "Statistics" {
+    +numberVolunteers: int
+    +numberOpportunities: int
+}
+
+entity "Message" {
+    +id: int (PK)
+    +content: string
+}
+
+entity "Donation" {
+    +id: int (PK)
+    +description: string
+    +status: string
+}
+
+User --|> Volunteer : Inherits
+User --|> Organization : Inherits
+User --|> Admin : Inherits
+
+User "1" --> "*" Message : Sends
+Volunteer "1" --> "*" Donation : Posts
+Volunteer "1" --> "*" Candidature : Applies
+Organization "1" --> "*" Opportunity : Publishes
+Organization "1" --> "1" Statistics : Has
+Organization "1" --> "*" Donation : Manages
+Candidature "*" --> "1" Opportunity : Refers to
+@enduml
