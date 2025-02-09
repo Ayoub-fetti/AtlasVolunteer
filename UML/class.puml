@@ -1,12 +1,20 @@
 @startuml class
+hide circle
 
 skinparam classAttributeIconSize 0
+skinparam Linetype ortho
+
+skinparam class {
+    ' BackgroundColor PaleGreen
+    BorderColor DarkGreen
+    ArrowColor DarkGreen
+}
 
 class User {
   #id: int
-  #nom: string
+  #username: string
   #email: string
-  #motDePasse: string
+  #password: string
   +register()
   +login()
   +logout()
@@ -31,10 +39,10 @@ class Admin {
 
 class Opportunity {
   -id: int
-  -titre: string
+  -title: string
   -description: string
-  -localisation: string
-  -durée: string
+  -location: string
+  -duration: string
   +createOpportunity()
   +editOpportunity()
   +deleteOpportunity()
@@ -42,29 +50,29 @@ class Opportunity {
 
 class Candidature {
   -id: int
-  -statut: string
-  -dateSoumission: date
-  +postuler()
+  -status: string
+  -submissionDate: date
+  +apply()
   +accept()
   +refuse()
 }
 
 class Statistics {
-  -nombrevolunteers: int
-  -nombreOpportunitys: int
+  -numbervolunteers: int
+  -numberOpportunities: int
   +generateRapport()
 }
 
 class Message {
   -id: int
-  -contenu: string
+  -content: string
   +sendMessage()
 }
 
 class Donation {
   -id: int
   -description: string
-  -état: string
+  -status: string
   +postDonation()
   +editDonation()
   +deleteDonation()
@@ -73,19 +81,19 @@ class Donation {
 User <|-- volunteer
 User <|-- Organization
 User <|-- Admin
-User --> Message 
+User "1" --> "*" Message 
 
 volunteer --* Donation 
-volunteer --> Candidature
-volunteer --> Opportunity 
+volunteer "1" --> "*" Candidature
+volunteer "*" --> "*" Opportunity 
 
-Organization --> Opportunity
-Organization --> Statistics 
-Organization --* Donation 
+Organization "1" --> "*" Opportunity
+Organization "1" --> "1" Statistics 
+Organization "1" --* "*" Donation 
 
-Admin --> Statistics  
-Admin --> Opportunity 
+Admin "1" --> "1" Statistics  
+Admin "1" --> "*" Opportunity 
 
-Candidature --> Opportunity
+Candidature "*" --> "1" Opportunity 
 
 @enduml
