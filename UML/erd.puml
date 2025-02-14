@@ -18,11 +18,17 @@ entity "User" {
 
 entity "Volunteer" {
     +id: int (PK)
+    +Organization_id: int (FK)
+    +Volunteer_id: int (FK)
     +participationHistory: list
 }
 
 entity "Organization" {
     +id: int (PK)
+    +porile_picture: string
+    +cover_picture: string
+    +location: string
+    +phone : int
     +publishedOpportunities: list
 }
 
@@ -33,30 +39,41 @@ entity "Admin" {
 
 entity "Opportunity" {
     +id: int (PK)
+    +Organization_id: int (FK)
     +title: string
     +description: string
+    +pictures: string
     +location: string
     +duration: string
 }
 
 entity "Candidature" {
     +id: int (PK)
+    +Volunteer_id: int (FK)
+    +Opportunity_id: int (FK)
+    +motivation_letter: string
     +status: string
     +submissionDate: date
 }
 
 entity "Statistics" {
+    +id: int (PK)
+    +Organization_id: int (FK)
     +numberVolunteers: int
     +numberOpportunities: int
 }
 
 entity "Message" {
     +id: int (PK)
+    +sender_id: int (FK)
+    +receiver_id: int (FK)
     +content: string
 }
 
 entity "Donation" {
     +id: int (PK)
+    +Volunteer_id: int (FK)
+    +Organization_id: int (FK)
     +description: string
     +status: string
 }

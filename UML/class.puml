@@ -5,7 +5,6 @@ skinparam classAttributeIconSize 0
 skinparam Linetype ortho
 
 skinparam class {
-    ' BackgroundColor PaleGreen
     BorderColor DarkGreen
     ArrowColor DarkGreen
 }
@@ -85,13 +84,13 @@ User <|-- Organization
 User <|-- Admin
 User "1" --> "*" Message 
 
-volunteer --* Donation 
-volunteer "1" --> "*" Candidature
+volunteer --> Donation 
+volunteer "1" --* "*" Candidature
 volunteer "*" --> "*" Opportunity 
 
 Organization "1" --> "*" Opportunity
 Organization "1" --> "1" Statistics 
-Organization "1" --* "*" Donation 
+Organization "1" --> "*" Donation 
 
 Admin "1" --> "1" Statistics  
 Admin "1" --> "*" Opportunity 
