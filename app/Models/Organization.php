@@ -15,7 +15,8 @@ class Organization extends Model
         'organization_type',
         'website',
         'logo',
-        'cover'
-
+        'cover',
+        'is_verified',
+        'verified_at',
     ];
 }
