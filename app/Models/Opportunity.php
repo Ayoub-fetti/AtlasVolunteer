@@ -1,9 +1,14 @@
 <?php
 
 namespace App\Models;
+use App\Models\Organization;
+use App\Models\Volunteer;
+use App\Models\User;
+use App\Models\Category;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Opportunity extends Model
 {
@@ -28,4 +33,21 @@ class Opportunity extends Model
         'is_remote',
         'status',
     ];
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+    public function volunteers()
+    {
+        return $this->belongsToMany(Volunteer::class, 'applications');
+    }
+    public function favoritedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+
+    }
 }
