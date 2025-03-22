@@ -31,6 +31,7 @@ class AuthController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
+                'phone' => 'nullable|string',
                 'date_of_birth' => 'nullable|date',
                 'skills' => 'nullable|string',
                 'interests' => 'nullable|string',
@@ -40,7 +41,9 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'password' => Hash::make($request->password),
-                'email' => $request->email
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'role' => 'volunteer',
             ]);
 
 
@@ -61,8 +64,8 @@ class AuthController extends Controller
             $request->validate([
                 'organization_name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
+                'phone' => 'nullable|string',
                 'password' => 'required|string|min:8|confirmed',
-                'phone' => ['required', 'regex:/^(?:\+212|0)([5-7])\d{8}$/', 'unique:users'] ,
                 'description' => 'nullable|string',
                 'website' => 'nullable|url',
             ]);
@@ -71,7 +74,7 @@ class AuthController extends Controller
                 'name' => $request->organization_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'phone' => $request->phone, 
+                'phone' => $request->phone,
                 'role' => 'organization',
             ]);
 
@@ -85,6 +88,28 @@ class AuthController extends Controller
             Auth::login($user);
 
             return redirect()->route('home')->with('success', 'Organization registered successfully!');
+        }
+
+        public function showLoginForm()
+        {
+            return view('auth.login');
+        }
+        public function login(Request $request)
+        {
+            $credentials = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+
+                return redirect()->intended('home');
+            }
+
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
         }
 
 

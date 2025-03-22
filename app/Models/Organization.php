@@ -28,7 +28,7 @@ class Organization extends Model
      *
      * @var string
      */
-    protected $table = 'organizations_profiles';
+    protected $table = 'organization_profiles';
 
 
     public function user()
