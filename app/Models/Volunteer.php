@@ -23,6 +23,13 @@ class Volunteer extends Model
         'total_hours',
         'available',
     ];
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'volunteer_profiles';
     
     public function user()
     {

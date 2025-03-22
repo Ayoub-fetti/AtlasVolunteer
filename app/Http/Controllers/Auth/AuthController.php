@@ -26,23 +26,24 @@ class AuthController extends Controller
        }
        public function registerVolunteer(Request $request)
         {
+            
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
-                'phone' => ['required', 'regex:/^(?:\+212|0)([5-7])\d{8}$/', 'unique:users'] ,
                 'date_of_birth' => 'nullable|date',
                 'skills' => 'nullable|string',
                 'interests' => 'nullable|string',
             ]);
 
+
             $user = User::create([
                 'name' => $request->name,
-                'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'phone' => $request->phone,
-                'role' => 'volunteer',
+                'email' => $request->email
             ]);
+
+
             Volunteer::create([
                 'user_id' => $user->id,
                 'date_of_birth' => $request->date_of_birth,

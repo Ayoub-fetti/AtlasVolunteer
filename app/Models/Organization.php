@@ -22,6 +22,15 @@ class Organization extends Model
         'is_verified',
         'verified_at',
     ];
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'organizations_profiles';
+
+
     public function user()
     {
         return $this->belongsTo(User::class);

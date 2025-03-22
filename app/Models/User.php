@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'email_verified_at',
+        'password',
         'role',
         'bio',
         'function',
@@ -35,9 +36,8 @@ class User extends Authenticatable
         'instagram',
         'linkedin',
     ];
-
+    
     protected $hidden = [
-        'password',
         'remember_token',
     ];
     
