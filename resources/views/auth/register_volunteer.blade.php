@@ -1,60 +1,43 @@
-<x-app>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
-            <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Register as Organization</h1>
-            <form action="{{ route('register.organization') }}" method="POST" class="space-y-4">
-                @csrf
 
-                <div>
-                    <label for="organization_name" class="block text-sm font-medium text-gray-700">Organization Name</label>
-                    <input type="text" id="organization_name" name="organization_name" required
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Volunteer</title>
+</head>
+<body>
+    <h1>Register as Volunteer</h1>
+    <form action="{{ route('register.volunteer') }}" method="POST">
+        @csrf
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
 
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" required
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" name="password" required
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
 
-                <div>
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" required
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
+        <label for="password_confirmation">Confirm Password:</label>
+        <input type="password" id="password_confirmation" name="password_confirmation" required><br><br> 
 
-                <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-                    <input type="text" id="phone" name="phone" required
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required><br><br>
 
-                <div>
-                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea id="description" name="description" rows="3"
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
-                </div>
+        <label for="date_of_birth">Date of Birth:</label>
+        <input type="date" id="date_of_birth" name="date_of_birth"><br><br>
 
-                <div>
-                    <label for="website" class="block text-sm font-medium text-gray-700">Website</label>
-                    <input type="url" id="website" name="website"
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
+        <label for="skills">Skills:</label>
+        <textarea id="skills" name="skills"></textarea><br><br>
 
-                <x-button type="submit"
-                    class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition">
-                    Register as Organization
-                </x-button>
-                <x-button href="{{ url('/auth/google') }}" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 5px;">
-                    Continue with Google
-                </x-button>
-            </form>
-        </div>
-    </div>
-</x-app>
+        <label for="interests">Interests:</label>
+        <textarea id="interests" name="interests"></textarea><br><br>
+
+        <button type="submit">Register as Volunteer</button>
+        <x-button href="{{ url('/auth/google') }}" class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition duration-150 ease-in-out">
+            Continue with Google
+        </x-button>
+    </form>
+</body>
+</html>

@@ -32,9 +32,9 @@ class AuthController extends Controller
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
                 'phone' => 'nullable|string',
-                'date_of_birth' => 'nullable|date',
-                'skills' => 'nullable|string',
-                'interests' => 'nullable|string',
+                // 'date_of_birth' => 'nullable|date',
+                // 'skills' => 'nullable|string',
+                // 'interests' => 'nullable|string',
             ]);
 
 
@@ -42,7 +42,7 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'password' => Hash::make($request->password),
                 'email' => $request->email,
-                'phone' => $request->phone,
+                // 'phone' => $request->phone,
                 'role' => 'volunteer',
             ]);
 
