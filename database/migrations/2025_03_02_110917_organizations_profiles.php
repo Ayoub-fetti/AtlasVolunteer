@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('organization_name');
-            $table->text('description')->nullable();
+            $table->text('bio')->nullable();
             $table->string('organization_type')->nullable();
             $table->string('website')->nullable();
             $table->string('logo')->nullable();

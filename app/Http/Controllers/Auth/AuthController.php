@@ -24,6 +24,10 @@ class AuthController extends Controller
    
            abort(404); // Invalid role
        }
+       public function showLoginForm()
+       {
+           return view('auth.login');
+       }
        public function registerVolunteer(Request $request)
         {
             
@@ -32,9 +36,9 @@ class AuthController extends Controller
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
                 'phone' => 'nullable|string',
-                // 'date_of_birth' => 'nullable|date',
-                // 'skills' => 'nullable|string',
-                // 'interests' => 'nullable|string',
+                'date_of_birth' => 'nullable|date',
+                'skills' => 'nullable|string',
+                'interests' => 'nullable|string',
             ]);
 
 
@@ -42,7 +46,7 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'password' => Hash::make($request->password),
                 'email' => $request->email,
-                // 'phone' => $request->phone,
+                'phone' => $request->phone,
                 'role' => 'volunteer',
             ]);
 
@@ -66,7 +70,7 @@ class AuthController extends Controller
                 'email' => 'required|string|email|max:255|unique:users',
                 'phone' => 'nullable|string',
                 'password' => 'required|string|min:8|confirmed',
-                'description' => 'nullable|string',
+                'bio' => 'nullable|string',
                 'website' => 'nullable|url',
             ]);
 
@@ -75,13 +79,14 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
+                'bio' => $request->bio,
                 'role' => 'organization',
             ]);
 
             Organization::create([
                 'user_id' => $user->id,
                 'organization_name' => $request->organization_name,
-                'description' => $request->description,
+                'bio' => $request->bio,
                 'website' => $request->website,
             ]);
 
@@ -90,10 +95,7 @@ class AuthController extends Controller
             return redirect()->route('home')->with('success', 'Organization registered successfully!');
         }
 
-        public function showLoginForm()
-        {
-            return view('auth.login');
-        }
+
         public function login(Request $request)
         {
             $credentials = $request->validate([
