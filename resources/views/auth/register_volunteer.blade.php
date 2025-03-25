@@ -10,35 +10,35 @@
     <form action="{{ route('register.volunteer') }}" method="POST">
         @csrf
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name">
         @error('name')
             <div style="color: red;">{{ $message }}</div>
         @enderror
         <br><br>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email">
         @error('email')
             <div style="color: red;">{{ $message }}</div>
         @enderror
         <br><br>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password">
         @error('password')
             <div style="color: red;">{{ $message }}</div>
         @enderror
         <br><br>
 
         <label for="password_confirmation">Confirm Password:</label>
-        <input type="password" id="password_confirmation" name="password_confirmation" required>
+        <input type="password" id="password_confirmation" name="password_confirmation">
         @error('password_confirmation')
             <div style="color: red;">{{ $message }}</div>
         @enderror
         <br><br> 
 
         <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" required>
+        <input type="text" id="phone" name="phone">
         @error('phone')
             <div style="color: red;">{{ $message }}</div>
         @enderror

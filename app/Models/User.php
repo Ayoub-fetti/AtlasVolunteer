@@ -26,7 +26,7 @@ class User extends Authenticatable
         'role',
         'bio',
         'function',
-        'adress',
+        'address',
         'city',
         'state',
         'zip',
