@@ -50,9 +50,9 @@ class ProfileController extends Controller
         'skills' => 'nullable|string',
         'interests' => 'nullable|string',
         'available' => 'nullable|boolean',
+        'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
-
-    // Mise à jour ou création de l'utilisateur
     $user = auth()->user();
 
     
@@ -71,7 +71,16 @@ class ProfileController extends Controller
         'linkedin' => $request->linkedin,
     ]);
 
-    // Mise à jour ou création du profil de volontaire
+    $profilePicturePath = null;
+    $coverPath = null;
+
+    if ($request->hasFile('profile_picture')) {
+        $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
+    }
+    if ($request->hasFile('cover')) {
+        $coverPath = $request->file('cover')->store('covers', 'public');
+    }
+
     $volunteer = Volunteer::updateOrCreate(
         ['user_id' => $user->id],
         [
@@ -80,10 +89,10 @@ class ProfileController extends Controller
             'skills' => $request->skills,
             'interests' => $request->interests,
             'available' => $request->available ?? true,
+            'profile_picture' => $profilePicturePath,
+            'cover' => $coverPath,
         ]
     );
-
-    // Redirection avec un message de succès
     return view('profile.volunteer.profile',compact('user','volunteer'))->with('success', 'Profil mis à jour avec succès.');
 }
 

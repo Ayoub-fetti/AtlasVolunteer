@@ -2,8 +2,32 @@
     <div class="container mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-5">Volunteer Profile</h1>
     
-        <form action="{{ route('profile.store') }}" method="POST">
+        <form action="{{ route('profile.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            {{-- Profile Picture --}}
+            <div class="mb-4">
+                <label for="profile_picture" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+                <input type="file" id="profile_picture" name="profile_picture" 
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                @if(optional($volunteer)->profile_picture)
+                    <img src="{{ asset('storage/' . $volunteer->profile_picture) }}" alt="Profile Picture" class="mt-2 w-32 h-32 object-cover rounded-md">
+                @endif
+                @error('profile_picture')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+            {{-- Cover --}}
+            <div class="mb-4">
+                <label for="cover" class="block text-sm font-medium text-gray-700">Cover</label>
+                <input type="file" id="cover" name="cover" 
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                @if(optional($volunteer)->cover)
+                    <img src="{{ asset('storage/' . $volunteer->cover) }}" alt="Cover" class="mt-2 w-full h-32 object-cover rounded-md">
+                @endif
+                @error('cover')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
     
             {{-- Name --}}
             <div class="mb-4">
