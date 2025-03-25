@@ -23,6 +23,10 @@ class Volunteer extends Model
         'total_hours',
         'available',
     ];
+    protected $casts = [
+            'date_of_birth' => 'date',
+            'available' => 'boolean',
+    ];
 
     /**
      * The table associated with the model.

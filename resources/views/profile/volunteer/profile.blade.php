@@ -26,7 +26,17 @@
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                 @enderror
             </div>
-    
+            {{-- bio --}}
+            <div class="mb-4">
+                <label for="bio" class="block text-sm font-medium text-gray-700">Bio</label>
+                <textarea id="bio" name="bio" 
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">{{ old('bio', optional($user)->bio) }}</textarea>
+                @error('bio')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+
+            
             {{-- Function --}}
             <div class="mb-4">
                 <label for="function" class="block text-sm font-medium text-gray-700">Function</label>
@@ -57,6 +67,16 @@
                 @enderror
             </div>
     
+            {{-- zip --}}
+            <div class="mb-4">
+                <label for="zip" class="block text-sm font-medium text-gray-700">Zip Code</label>
+                <input type="text" id="zip" name="zip" value="{{ old('zip', optional($user)->zip) }}" 
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                @error('zip')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+    
             {{-- State --}}
             <div class="mb-4">
                 <label for="state" class="block text-sm font-medium text-gray-700">State</label>
@@ -76,7 +96,35 @@
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                 @enderror
             </div>
-    
+            {{-- Date of Birth --}}
+            <div class="mb-4">
+                <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date of birth</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" 
+                value="{{ old('date_of_birth', $volunteer->date_of_birth ? $volunteer->date_of_birth->format('Y-m-d') : '') }}" 
+                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                @error('date_of_birth')
+                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+            {{-- skills --}}
+            <div class="mb-4">
+                <label for="skills" class="block text-sm font-medium text-gray-700">skills</label>
+                <input type="text" id="skills" name="skills" value="{{ old('skills', optional($volunteer)->skills) }}" 
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                @error('skills')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+            {{-- interests --}}
+            <div class="mb-4">
+                <label for="interests" class="block text-sm font-medium text-gray-700">Interests</label>
+                <input type="text" id="interests" name="interests" value="{{ old('interests', optional($volunteer)->interests) }}" 
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                @error('interests')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+            
             {{-- Social Media Links --}}
             <div class="grid grid-cols-2 gap-4">
                 @foreach (['facebook', 'twitter', 'instagram', 'linkedin'] as $social)

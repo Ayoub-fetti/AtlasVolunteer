@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Volunteer;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -16,6 +17,10 @@ class ProfileController extends Controller
         $user = auth()->user();
         // $user = User::find(auth()->user()->id);
         $volunteer = Volunteer::where('user_id', $user->id)->first();
+
+        if ($volunteer && $volunteer->date_of_birth) {
+            $volunteer->date_of_birth = Carbon::parse($volunteer->date_of_birth)->format('Y-m-d');
+        }
         return view('profile.volunteer.profile', compact('user','volunteer'));
     }
 
