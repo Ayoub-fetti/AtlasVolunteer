@@ -15,7 +15,6 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth()->user();
-        // $user = User::find(auth()->user()->id);
         $volunteer = Volunteer::where('user_id', $user->id)->first();
 
         if ($volunteer && $volunteer->date_of_birth) {
