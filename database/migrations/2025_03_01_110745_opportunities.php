@@ -14,15 +14,14 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('category');
-            $table->string('cover');
+            $table->string('cover')->nullable();
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
-            $table->string('location');
-            $table->string('city');
+            $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->string('state')->nullable();
-            $table->string('country');
+            $table->string('country')->nullable();
             $table->integer('required_volunteers')->default(1);
             $table->integer('registered_volunteers')->default(0);
             $table->boolean('is_remote')->default(false);

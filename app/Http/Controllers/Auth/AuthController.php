@@ -70,7 +70,7 @@ class AuthController extends Controller
                 'email' => 'required|string|email|max:255|unique:users',
                 'phone' => 'nullable|string',
                 'password' => 'required|string|min:8|confirmed',
-                'bio' => 'nullable|string',
+                // 'bio' => 'nullable|string',
                 'website' => 'nullable|url',
             ]);
 
@@ -79,14 +79,14 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
-                'bio' => $request->bio,
+                // 'bio' => $request->bio,
                 'role' => 'organization',
             ]);
 
             Organization::create([
                 'user_id' => $user->id,
                 'organization_name' => $request->organization_name,
-                'bio' => $request->bio,
+                // 'bio' => $request->bio,
                 'website' => $request->website,
             ]);
 

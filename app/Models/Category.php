@@ -12,8 +12,6 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'description',
-        'icon',
     ];
     public function opportunities()
     {

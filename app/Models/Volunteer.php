@@ -39,10 +39,6 @@ class Volunteer extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function skills()
-    {
-        return $this->belongsToMany(Skill::class);
-    }
     public function opportunities()
     {
         return $this->belongsToMany(Opportunity::class, 'applications');

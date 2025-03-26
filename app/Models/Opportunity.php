@@ -5,6 +5,7 @@ use App\Models\Organization;
 use App\Models\Volunteer;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Location;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,8 +25,7 @@ class Opportunity extends Model
         'end_date',
         'start_time',
         'end_time',
-        'location',
-        'city',
+        'location_id',
         'state',
         'country',
         'required_volunteers',
@@ -33,6 +33,7 @@ class Opportunity extends Model
         'is_remote',
         'status',
     ];
+
     public function organization()
     {
         return $this->belongsTo(Organization::class);
@@ -49,5 +50,9 @@ class Opportunity extends Model
     {
         return $this->belongsToMany(Category::class);
 
+    }
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 }

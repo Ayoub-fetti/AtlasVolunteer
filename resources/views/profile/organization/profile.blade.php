@@ -148,4 +148,11 @@
             </div>
         </form>
     </div>
+
+    <div>
+        <a href="{{route('opportunity.index') }}"> 
+            Create opportunity
+        </a>
+    </div>
+
 </x-app>

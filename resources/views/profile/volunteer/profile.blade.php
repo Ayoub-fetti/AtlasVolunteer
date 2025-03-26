@@ -151,7 +151,7 @@
             
             {{-- Social Media Links --}}
             <div class="grid grid-cols-2 gap-4">
-                @foreach (['facebook', 'twitter', 'instagram', 'linkedin'] as $social)
+                {{-- @foreach (['facebook', 'twitter', 'instagram', 'linkedin'] as $social)
                     <div class="mb-4">
                         <label for="{{ $social }}" class="block text-sm font-medium text-gray-700">{{ ucfirst($social) }}</label>
                         <input type="url" id="{{ $social }}" name="{{ $social }}" value="{{ old($social, optional($user)->$social) }}" 
@@ -160,7 +160,7 @@
                             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                         @enderror
                     </div>
-                @endforeach
+                @endforeach --}}
             </div>
     
             {{-- Gender --}}

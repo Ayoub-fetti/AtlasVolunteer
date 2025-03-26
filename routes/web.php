@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\organization\OpporunityController;
 use App\Http\Controllers\organization\OrganizationProfileController;
 use App\Http\Controllers\volunteer\ProfileController;
 
@@ -26,5 +27,9 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleC
 // profile volunteer
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+
+// profile organization
 Route::get('/organization', [OrganizationProfileController::class, 'index'])->name('organization.index');
 Route::post('/organization', [OrganizationProfileController::class, 'store'])->name('organization.store');
+Route::get('/opportunity', [OpporunityController::class, 'index'])->name('opportunity.index');
+Route::post('/opportunity', [OpporunityController::class, 'store'])->name('opportunity.store');
