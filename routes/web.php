@@ -32,10 +32,13 @@ Route::post('/profile', [ProfileController::class, 'store'])->name('profile.stor
 // profile organization
 Route::get('/organization', [OrganizationProfileController::class, 'index'])->name('organization.index');
 Route::post('/organization', [OrganizationProfileController::class, 'store'])->name('organization.store');
-Route::get('/opportunity', [OpporunityController::class, 'index'])->name('opportunity.index');
-Route::post('/opportunity', [OpporunityController::class, 'store'])->name('opportunity.store');
 
 // opportunity
 
+Route::get('/opportunity', [OpporunityController::class, 'index'])->name('opportunity.index');
+Route::get('/opportunity/add', [OpporunityController::class, 'create'])->name('opportunity.create');
+
+Route::post('/opportunity', [OpporunityController::class, 'store'])->name('opportunity.store');
 Route::get('/opportunities',[OpporunityController::class, 'list'])->name('opportunities.list');
 Route::get('/opportunities/{id}',[OpporunityController::class, 'show'])->name('opportunities.show');
+Route::delete('/opportunities/{id}',[OpporunityController::class, 'destroy'])->name('opportunities.destroy');

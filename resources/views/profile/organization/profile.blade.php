@@ -1,4 +1,9 @@
 <x-app>
+        @if (session('success'))
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-5" role="alert">
+                <p>{{ session('success') }}</p>
+            </div>
+        @endif
     <div class="container mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-5">Organization Profile</h1>
 
@@ -150,7 +155,7 @@
     </div>
 
     <div>
-        <a href="{{route('opportunity.index') }}" class="mt-4 block text-indigo-500 hover:text-indigo-600"> 
+        <a href="{{route('opportunity.create') }}" class="mt-4 block text-indigo-500 hover:text-indigo-600"> 
             Create opportunity
         </a>
     </div>
@@ -166,6 +171,12 @@
                     <h3 class="text-lg font-semibold">{{ $opportunity->title }}</h3>
                     <p class="text-sm text-gray-600">{{ $opportunity->description }}</p>
                     <a href="{{ route('opportunities.show', $opportunity->id) }}" class="text-indigo-500 hover:underline">Voir les détails</a>
+                <!-- Delete Button -->
+                <form action="{{ route('opportunities.destroy', $opportunity->id) }}" method="POST"             onsubmit="return confirm('Are you sure you want to delete this opportunity?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-500 hover:underline">Supprimer</button>
+                </form>
                 </li>
             @endforeach
         </ul>

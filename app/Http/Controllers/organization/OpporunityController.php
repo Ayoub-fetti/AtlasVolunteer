@@ -16,7 +16,7 @@ class OpporunityController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function create()
     {
         $categories = Category::all();
         $locations = Location::all();
@@ -29,8 +29,16 @@ class OpporunityController extends Controller
         return view('home', compact('opportunities'));
     }
 
-    public function create()
-    {
+    public function index()
+    {   
+        $user = Auth::user();
+        if ($user->role !== 'organization') {
+            return redirect()->route('home')->with('error', 'You are not authorized to access this page.');
+        }
+        $opportunities = Opportunity::where('user_id', Auth::id())->with(['categories', 'location'])->get();
+        $organization = Organization::where('user_id', Auth::id())->first();
+
+        return view('profile.organization.profile', compact('organization', 'user','opportunities'));
     }
 
     public function store(Request $request)
@@ -88,27 +96,27 @@ class OpporunityController extends Controller
         return view('opportunity_detail', compact('opportunity'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+ 
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $opportunity = Opportunity::findOrFail($id);
+
+        if ($opportunity->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'You are not authorized to delete this opportunity.');
+        }
+        $opportunity->delete();
+        $user = Auth::user();
+        return redirect()->route('opportunity.index')->with('success', 'Opportunity deleted successfully.');
     }
 }

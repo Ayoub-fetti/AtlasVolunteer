@@ -1,4 +1,10 @@
 <x-app>
+
+    @if (session('success'))
+        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-5" role="alert">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
     <div class="mt-10">
         <h2 class="text-xl font-bold mb-5">Créer une Opportunité</h2>
     

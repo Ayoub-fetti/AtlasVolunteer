@@ -78,6 +78,7 @@ class OrganizationProfileController extends Controller
                 $coverPath = $request->file('cover')->store('organization_covers', 'public');
             }
 
+            $opportunities = Opportunity::where('user_id', $user->id)->get();
             $organization = Organization::updateOrCreate(
                 ['user_id' => $user->id],
                 [   'organization_name' => $request->organization_name,
@@ -89,7 +90,7 @@ class OrganizationProfileController extends Controller
                     'cover' => $coverPath,
                 ]
             );
-            return view('profile.organization.profile',compact('user','organization'))->with('success', 'Profil mis à jour avec succès.');
+            return view('profile.organization.profile',compact('user','organization','opportunities'))->with('success', 'Profil mis à jour avec succès.');
         }
 
     /**
