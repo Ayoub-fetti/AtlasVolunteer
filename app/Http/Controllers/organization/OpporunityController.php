@@ -84,7 +84,7 @@ class OpporunityController extends Controller
 
     public function show(string $id)
     {
-        $opportunity = Opportunity::with(['category', 'location'])->findOrFail($id);
+        $opportunity = Opportunity::with(['categories', 'location'])->findOrFail($id);
         return view('opportunity_detail', compact('opportunity'));
     }
 

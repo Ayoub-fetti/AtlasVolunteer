@@ -10,6 +10,7 @@
         <ul>
             @foreach($opportunities as $opportunity)
             <li>
+                <img src="{{ asset('storage/' . $opportunity->cover )}}" alt="{{ $opportunity->title }}" style="width: 100px; height: 100px;">
                 <h3>{{ $opportunity->title }}</h3>
                 <p>{{ $opportunity->description }}</p>
                 <p>Category: {{ $opportunity->category }}</p>
