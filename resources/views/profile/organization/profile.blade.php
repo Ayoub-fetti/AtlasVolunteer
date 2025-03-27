@@ -150,9 +150,26 @@
     </div>
 
     <div>
-        <a href="{{route('opportunity.index') }}"> 
+        <a href="{{route('opportunity.index') }}" class="mt-4 block text-indigo-500 hover:text-indigo-600"> 
             Create opportunity
         </a>
     </div>
+
+    <div class="mt-10">
+    <h2 class="text-xl font-bold mb-5">Vos Opportunités</h2>
+    @if($opportunities->isEmpty())
+        <p class="text-gray-500">Aucune opportunité créée pour le moment.</p>
+    @else
+        <ul class="space-y-4">
+            @foreach($opportunities as $opportunity)
+                <li class="border p-4 rounded-md shadow-sm">
+                    <h3 class="text-lg font-semibold">{{ $opportunity->title }}</h3>
+                    <p class="text-sm text-gray-600">{{ $opportunity->description }}</p>
+                    <a href="{{ route('opportunities.show', $opportunity->id) }}" class="text-indigo-500 hover:underline">Voir les détails</a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+</div>
 
 </x-app>

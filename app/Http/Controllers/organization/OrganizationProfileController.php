@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\organization;
 
 use App\Http\Controllers\Controller;
+use App\Models\Opportunity;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,9 @@ class OrganizationProfileController extends Controller
     {
         $user = auth()->user();
         $organization = Organization::where('user_id', $user->id)->first();
+        $opportunities = Opportunity::where('user_id', $user->id)->get();
 
-        return view('profile.organization.profile',compact('user','organization'));
+        return view('profile.organization.profile',compact('user','organization','opportunities'));
     }
 
     /**
