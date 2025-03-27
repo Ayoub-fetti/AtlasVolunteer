@@ -10,9 +10,10 @@ use App\Http\Controllers\volunteer\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
-route::get('/home', function () { 
-    return view('home');
-})->name('home');
+
+Route::get('/home', [OpporunityController::class, 'list'])->name('home');
+
+
 
 Route::get('/register/{role}', [AuthController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('/register/volunteer', [AuthController::class, 'registerVolunteer'])->name('register.volunteer');
@@ -33,3 +34,8 @@ Route::get('/organization', [OrganizationProfileController::class, 'index'])->na
 Route::post('/organization', [OrganizationProfileController::class, 'store'])->name('organization.store');
 Route::get('/opportunity', [OpporunityController::class, 'index'])->name('opportunity.index');
 Route::post('/opportunity', [OpporunityController::class, 'store'])->name('opportunity.store');
+
+// opportunity
+
+Route::get('/opportunities',[OpporunityController::class, 'list'])->name('opportunities.list');
+Route::get('/opportunities/{id}',[OpporunityController::class, 'show'])->name('opportunities.show');

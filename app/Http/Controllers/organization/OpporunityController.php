@@ -24,17 +24,15 @@ class OpporunityController extends Controller
         return view('profile.organization.opportunity', compact('categories','locations','opportunity'));
 
     }
+    public function list() {
+        $opportunities = Opportunity::with(['categories', 'location'])->get();
+        return view('home', compact('opportunities'));
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         
@@ -84,12 +82,10 @@ class OpporunityController extends Controller
         return redirect()->route('opportunity.index')->with('success', 'Opportunity created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $opportunity = Opportunity::with(['category', 'location'])->findOrFail($id);
+        return view('opportunity_detail', compact('opportunity'));
     }
 
     /**

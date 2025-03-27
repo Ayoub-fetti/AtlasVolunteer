@@ -24,7 +24,6 @@ class OrganizationProfileController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
