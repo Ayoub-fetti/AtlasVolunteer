@@ -177,6 +177,7 @@
                     @method('DELETE')
                     <button type="submit" class="text-red-500 hover:underline">Supprimer</button>
                 </form>
+                <a href="{{ route('opportunity.edit', $opportunity->id) }}" class="text-indigo-500 hover:underline">Modifier</a>
                 </li>
             @endforeach
         </ul>

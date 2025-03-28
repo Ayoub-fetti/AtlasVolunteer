@@ -42,3 +42,5 @@ Route::post('/opportunity', [OpporunityController::class, 'store'])->name('oppor
 Route::get('/opportunities',[OpporunityController::class, 'list'])->name('opportunities.list');
 Route::get('/opportunities/{id}',[OpporunityController::class, 'show'])->name('opportunities.show');
 Route::delete('/opportunities/{id}',[OpporunityController::class, 'destroy'])->name('opportunities.destroy');
+Route::get('/opportunity/edit/{id}', [OpporunityController::class, 'edit'])->name('opportunity.edit');
+Route::put('/opportunity/update/{id}',[OpporunityController::class, 'update'])->name('opportunity.update');

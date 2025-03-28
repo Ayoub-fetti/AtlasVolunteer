@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Auth;
 
 class OpporunityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public function index()
+    {   
+        $user = Auth::user();
+        if ($user->role !== 'organization') {
+            return redirect()->route('home')->with('error', 'You are not authorized to access this page.');
+        }
+        $opportunities = Opportunity::where('user_id', Auth::id())->with(['categories', 'location'])->get();
+        $organization = Organization::where('user_id', Auth::id())->first();
+
+        return view('profile.organization.profile', compact('organization', 'user','opportunities'));
+    }
     public function create()
     {
         $categories = Category::all();
@@ -29,21 +38,10 @@ class OpporunityController extends Controller
         return view('home', compact('opportunities'));
     }
 
-    public function index()
-    {   
-        $user = Auth::user();
-        if ($user->role !== 'organization') {
-            return redirect()->route('home')->with('error', 'You are not authorized to access this page.');
-        }
-        $opportunities = Opportunity::where('user_id', Auth::id())->with(['categories', 'location'])->get();
-        $organization = Organization::where('user_id', Auth::id())->first();
-
-        return view('profile.organization.profile', compact('organization', 'user','opportunities'));
-    }
 
     public function store(Request $request)
     {
-        
+    
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -99,13 +97,59 @@ class OpporunityController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $opportunity = Opportunity::with(['categories', 'location'])->findOrFail($id);
+        $categories = Category::all();
+        $locations = Location::all();
+        $user = Auth::user();
+        return view('profile.organization.update', compact('opportunity','categories','locations','user'));
     }
 
  
     public function update(Request $request, string $id)
     {
-        //
+        // Valider les données entrantes
+        $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'category' => 'nullable|numeric|exists:categories,id',
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'start_time' => 'nullable',
+            'end_time' => 'nullable',
+            'location' => 'nullable|exists:locations,id',
+            'state' => 'nullable|string',
+            'country' => 'nullable|string',
+            'required_volunteers' => 'nullable|integer|min:1',
+            'status' => 'required|in:open,closed,completed,canceled',
+        ]);
+    
+        // Trouver l'opportunité
+        $opportunity = Opportunity::findOrFail($id);
+    
+    
+        if ($request->hasFile('cover')) {
+            $coverPath = $request->file('cover')->store('opportunities_covers', 'public');
+            $opportunity->cover = $coverPath;
+        }
+    
+        // Mettre à jour les données de l'opportunité
+        $opportunity->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'category' => $request->category,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'location_id' => $request->location,
+            'state' => $request->state,
+            'country' => $request->country,
+            'required_volunteers' => $request->required_volunteers,
+            'status' => $request->status,
+        ]);
+    
+        return redirect()->route('opportunity.index')->with('success', 'Opportunity updated successfully.');
     }
 
     public function destroy(string $id)
