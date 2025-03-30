@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\organization\OpporunityController;
 use App\Http\Controllers\organization\OrganizationProfileController;
 use App\Http\Controllers\volunteer\ProfileController;
@@ -44,3 +45,13 @@ Route::get('/opportunities/{id}',[OpporunityController::class, 'show'])->name('o
 Route::delete('/opportunities/{id}',[OpporunityController::class, 'destroy'])->name('opportunities.destroy');
 Route::get('/opportunity/edit/{id}', [OpporunityController::class, 'edit'])->name('opportunity.edit');
 Route::put('/opportunity/update/{id}',[OpporunityController::class, 'update'])->name('opportunity.update');
+
+// donation
+Route::get('/donations', [DonationController::class, 'index'])->name('donation.index');
+Route::get('/donations/my', [DonationController::class, 'list'])->name('donation.list');
+Route::get('/donations/create', [DonationController::class, 'create'])->name('donation.create');
+Route::get('/donations/edit', [DonationController::class, 'edit'])->name('donation.edit');
+Route::post('/donations', [DonationController::class, 'strore'])->name('donation.strore');
+Route::put('/donations/{id}', [DonationController::class, 'update'])->name('donation.update');
+Route::delete('/donations/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');
+Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donation.show');
