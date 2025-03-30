@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Skill;
 use App\Models\Opportunity;
+use App\Models\Donation;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,5 +43,9 @@ class Volunteer extends Model
     public function opportunities()
     {
         return $this->belongsToMany(Opportunity::class, 'applications');
+    }
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
     }
 }

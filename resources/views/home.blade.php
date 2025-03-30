@@ -15,7 +15,9 @@
                 <p>{{ $opportunity->description }}</p>
                 <p>Category: {{ $opportunity->category }}</p>
                 <p>Location: {{ $opportunity->location->place_name }}</p>
-                <a href="{{ route('opportunities.show', $opportunity->id) }}">View Details</a>
+                <h3>Status: {{$opportunity->status}}</h3>
+                <a href="{{ route('opportunities.show', $opportunity->id) }}" class="text-orange-500">View Details</a>
+                <a href="#" class="text-blue-500">Apply</a>
             </li>
             @endforeach
         </ul>

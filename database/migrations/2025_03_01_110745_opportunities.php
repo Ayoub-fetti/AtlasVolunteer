@@ -26,8 +26,6 @@ return new class extends Migration
             $table->integer('registered_volunteers')->default(0);
             $table->boolean('is_remote')->default(false);
             $table->enum('status', ['open', 'closed', 'completed', 'canceled'])->default('open');
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
             $table->timestamps();
         });
     }
