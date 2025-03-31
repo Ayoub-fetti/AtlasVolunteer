@@ -3,6 +3,10 @@
     <a href="{{ auth()->user()->role === 'volunteer' ? route('profile.index') : route('organization.index') }}"> 
         Go to profile
     </a>
+    <br>
+    <a href="{{route('donation.index')}}"> 
+        Go to Donation
+    </a>
 
     @if($opportunities->count() > 0)
     <div class="opportunities-list mt-4">

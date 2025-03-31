@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Auth;
 class DonationController extends Controller
 {
 
-    // pour lister toutes les donations
+    // pour lister toutes les donations dans la page principale
     public function index()
     {
         $donations = Donation::with('location')->get();
         return view('donation.donations', compact('donations'));
     }
 
+    // pour lister juste les donations de l'utilisateur
     public function list()
     {
         $user = Auth::user();
@@ -51,7 +52,7 @@ class DonationController extends Controller
             'image' => $validatedData['image'],
         ]);
 
-        return view('donation.your_donation')->with('success', 'Donation created successfully.');
+        return redirect()->route('donation.list')->with('success', 'Donation created successfully.');
     }
 
 
@@ -88,7 +89,7 @@ class DonationController extends Controller
             'status' => $request->input('status'),
             'image' => $validatedData['image'],
         ]);
-        return view('donation.your_donation')->with('success', 'Donation updated successfully.'); 
+        return redirect()->route('donation.list')->with('success', 'Donation updated successfully.'); 
 
 
     }
@@ -103,6 +104,6 @@ class DonationController extends Controller
         }
         $donation->delete();
         $user = Auth::user();
-        return view('donation.your_donation')->with('success', 'Donation deleted successfully.');
+        return redirect()->route('donation.list')->with('success', 'Donation deleted successfully.');
     }
 }
