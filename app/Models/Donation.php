@@ -16,7 +16,7 @@ class Donation extends Model
         'user_id',
         'title',
         'description',
-        'location',
+        'location_id',
         'city',
         'image',
         'status',

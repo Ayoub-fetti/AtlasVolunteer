@@ -49,7 +49,7 @@ class DonationController extends Controller
             'user_id' => Auth::id(),
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'location_id' => $request->location,
+            'location_id' => $request->input('location_id'),
             'status' => $request->input('status'),
             'image' => $validatedData['image'],
         ]);
