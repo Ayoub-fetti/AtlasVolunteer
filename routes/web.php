@@ -51,7 +51,7 @@ Route::get('/donations', [DonationController::class, 'index'])->name('donation.i
 Route::get('/donations/my', [DonationController::class, 'list'])->name('donation.list');
 Route::get('/donations/create', [DonationController::class, 'create'])->name('donation.create');
 Route::get('/donations/edit', [DonationController::class, 'edit'])->name('donation.edit');
-Route::post('/donations', [DonationController::class, 'strore'])->name('donation.store');
+Route::post('/donations', [DonationController::class, 'store'])->name('donation.store');
 Route::put('/donations/{id}', [DonationController::class, 'update'])->name('donation.update');
 Route::delete('/donations/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');
 Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donation.show');

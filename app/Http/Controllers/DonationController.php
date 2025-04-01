@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donation;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class DonationController extends Controller
     // pour lister toutes les donations dans la page principale
     public function index()
     {
-        $donations = Donation::with('location')->get();
+        $donations = Donation::with(['location'])->get();
         return view('donation.donations', compact('donations'));
     }
 
@@ -26,7 +27,8 @@ class DonationController extends Controller
 
     public function create()
     {
-        return view('donation.add');
+        $locations = Location::all();
+        return view('donation.add', compact('locations'));
     }
 
     public function store(Request $request)
@@ -47,7 +49,7 @@ class DonationController extends Controller
             'user_id' => Auth::id(),
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'location' => $request->input('location'),
+            'location_id' => $request->location,
             'status' => $request->input('status'),
             'image' => $validatedData['image'],
         ]);
