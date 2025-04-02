@@ -156,7 +156,7 @@
             
             {{-- Social Media Links --}}
             <div class="grid grid-cols-2 gap-4">
-                {{-- @foreach (['facebook', 'twitter', 'instagram', 'linkedin'] as $social)
+                @foreach (['facebook', 'twitter', 'instagram', 'linkedin'] as $social)
                     <div class="mb-4">
                         <label for="{{ $social }}" class="block text-sm font-medium text-gray-700">{{ ucfirst($social) }}</label>
                         <input type="url" id="{{ $social }}" name="{{ $social }}" value="{{ old($social, optional($user)->$social) }}" 
@@ -165,7 +165,7 @@
                             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                         @enderror
                     </div>
-                @endforeach --}}
+                @endforeach
             </div>
     
             {{-- Gender --}}
@@ -187,6 +187,9 @@
                 class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition">
                 Save Profile
             </button>
+            <a href="{{ route('opportunity.application') }}" 
+                class="mt-4 inline-block text-indigo-600 hover:text-indigo-800">
+                View Applications
         </form>
     </div>
     </x-app>

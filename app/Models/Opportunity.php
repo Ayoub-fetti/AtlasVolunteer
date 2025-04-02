@@ -6,6 +6,7 @@ use App\Models\Volunteer;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Location;
+use App\Models\Application;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -54,5 +55,8 @@ class Opportunity extends Model
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+    public function applications(){
+        return $this->hasMany(Application::class);
     }
 }

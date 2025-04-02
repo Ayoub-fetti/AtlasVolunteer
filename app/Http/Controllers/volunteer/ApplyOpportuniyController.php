@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplyOpportuniyController extends Controller
 {
+    public function list(){
+        $user = Auth::user();
+        $applications = Application::where('user_id', Auth::id())->get();
+        return view('profile.volunteer.application', compact('user', 'applications'));
+    }
     public function apply( Request $request, $opportunityId)
     {
         $user = Auth::user();
@@ -26,7 +31,6 @@ class ApplyOpportuniyController extends Controller
             'motivation' => 'required|string|max:1000',
         ]);
 
-        // Créer une nouvelle application
         Application::create([
             'user_id' => $user->id,
             'opportunity_id' => $opportunityId,
@@ -36,4 +40,6 @@ class ApplyOpportuniyController extends Controller
 
         return redirect()->back()->with('success', 'You have successfully applied for this opportunity.');
     }
+
+
 }

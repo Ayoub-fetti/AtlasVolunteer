@@ -59,3 +59,4 @@ Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donati
 
 // apply opportunity
 Route::post('/opportunities/{id}/apply', [ApplyOpportuniyController::class, 'apply'])->name('opportunity.apply');
+Route::get('/opportunity/applications', [ApplyOpportuniyController::class, 'list'])->name('opportunity.application');
