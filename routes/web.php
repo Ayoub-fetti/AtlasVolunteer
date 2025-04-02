@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\organization\OpporunityController;
 use App\Http\Controllers\organization\OrganizationProfileController;
+use App\Http\Controllers\volunteer\ApplyOpportuniyController;
 use App\Http\Controllers\volunteer\ProfileController;
 
 Route::get('/', function () {
@@ -55,3 +56,6 @@ Route::post('/donations', [DonationController::class, 'store'])->name('donation.
 Route::put('/donations/{id}', [DonationController::class, 'update'])->name('donation.update');
 Route::delete('/donations/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');
 Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donation.show');
+
+// apply opportunity
+Route::post('/opportunities/{id}/apply', [ApplyOpportuniyController::class, 'apply'])->name('opportunity.apply');
