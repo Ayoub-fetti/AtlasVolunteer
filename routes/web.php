@@ -50,7 +50,7 @@ Route::put('/opportunity/update/{id}',[OpporunityController::class, 'update'])->
 Route::get('/donations', [DonationController::class, 'index'])->name('donation.index');
 Route::get('/donations/my', [DonationController::class, 'list'])->name('donation.list');
 Route::get('/donations/create', [DonationController::class, 'create'])->name('donation.create');
-Route::get('/donations/edit', [DonationController::class, 'edit'])->name('donation.edit');
+Route::get('/donations/edit/{id}', [DonationController::class, 'edit'])->name('donation.edit');
 Route::post('/donations', [DonationController::class, 'store'])->name('donation.store');
 Route::put('/donations/{id}', [DonationController::class, 'update'])->name('donation.update');
 Route::delete('/donations/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');

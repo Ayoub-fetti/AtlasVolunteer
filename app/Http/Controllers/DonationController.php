@@ -66,7 +66,9 @@ class DonationController extends Controller
 
     public function edit(string $id)
     {
-      return view('donation.update');  
+        $donation = Donation::findOrFail($id);
+        $locations = Location::all();
+      return view('donation.update', compact('donation','locations'));  
     }
 
 
@@ -91,7 +93,7 @@ class DonationController extends Controller
             'status' => $request->input('status'),
             'image' => $validatedData['image'],
         ]);
-        return redirect()->route('donation.list')->with('success', 'Donation updated successfully.'); 
+        return redirect()->route('donation.list', compact('donation'))->with('success', 'Donation updated successfully.'); 
 
 
     }
