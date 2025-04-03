@@ -167,7 +167,35 @@ class OpporunityController extends Controller
     public function applications($id){
         $opportunity = Opportunity::with(['applications','user'])->findOrFail($id);
         $applications = $opportunity->applications;
+
         return view('profile.organization.applications', compact('opportunity', 'applications'));
+    }
+
+    public function manage($applicationId){
+        
+        $application = Application::findOrFail($applicationId);
+        return view('profile.organization.manage', compact('application'));
+    }
+
+   public function management(Request $request, $applicationId)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,approved,rejected,completed',
+            'approved_at' => 'nullable|date',
+            'hours_served' => 'nullable|integer|min:0',
+            'completed_at' => 'nullable|date',
+        ]);
+
+        $application = Application::findOrFail($applicationId);
+
+        $application->update([
+            'status' => $request->status,
+            'approved_at' => $request->approved_at,
+            'hours_served' => $request->hours_served,
+            'completed_at' => $request->completed_at,
+        ]);
+
+        return redirect()->back()->with('success', 'Application updated successfully.');
     }
 
 }

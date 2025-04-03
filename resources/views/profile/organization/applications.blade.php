@@ -9,9 +9,7 @@
                 <thead>
                     <tr>
                         <th class="border border-gray-300 px-4 py-2">Volunteer Name</th>
-                        <th class="border border-gray-300 px-4 py-2">Email</th>
                         <th class="border border-gray-300 px-4 py-2">Status</th>
-                        <th class="border border-gray-300 px-4 py-2">Motivation</th>
                         <th class="border border-gray-300 px-4 py-2">Actions</th>
                     </tr>
                 </thead>
@@ -23,7 +21,7 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $application->status }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $application->motivation }}</td>
                             <td class="border border-gray-300 px-4 py-2">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-800">Accept</a>
+                                <a href="{{ route('opportunity.manage' , $application->id) }}" class="text-green-600 hover:text-green-800">Manage</a>
                             </td>
                         </tr>
                     @endforeach

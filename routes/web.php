@@ -61,3 +61,8 @@ Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donati
 Route::post('/opportunities/{id}/apply', [ApplyOpportuniyController::class, 'apply'])->name('opportunity.apply');
 Route::get('/opportunity/applications', [ApplyOpportuniyController::class, 'list'])->name('opportunity.application');
 Route::get('/opportunities/{id}/applications',[OpporunityController::class ,'applications'])->name('opportunity.applications');
+
+// application management
+Route::get('/opportunity/management/{id}',[OpporunityController::class, 'manage'])->name('opportunity.manage');
+Route::put('/opportunity/management/{id}',[OpporunityController::class, 'management'])->name('opportunity.management');
+
