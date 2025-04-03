@@ -170,9 +170,10 @@
                 <li class="border p-4 rounded-md shadow-sm">
                     <h3 class="text-lg font-semibold">{{ $opportunity->title }}</h3>
                     <p class="text-sm text-gray-600">{{ $opportunity->description }}</p>
+                    <a href="{{ route('opportunity.applications', $opportunity->id) }}" class="text-green-500 hover:underline">Voir les candidatures</a>
                     <a href="{{ route('opportunities.show', $opportunity->id) }}" class="text-indigo-500 hover:underline">Voir les détails</a>
                 <!-- Delete Button -->
-                <form action="{{ route('opportunities.destroy', $opportunity->id) }}" method="POST"             onsubmit="return confirm('Are you sure you want to delete this opportunity?');">
+                <form action="{{ route('opportunities.destroy', $opportunity->id) }}" method="POST"onsubmit="return confirm('Are you sure you want to delete this opportunity?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="text-red-500 hover:underline">Supprimer</button>

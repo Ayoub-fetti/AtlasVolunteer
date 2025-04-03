@@ -163,4 +163,11 @@ class OpporunityController extends Controller
         $user = Auth::user();
         return redirect()->route('opportunity.index')->with('success', 'Opportunity deleted successfully.');
     }
+
+    public function applications($id){
+        $opportunity = Opportunity::with(['applications','user'])->findOrFail($id);
+        $applications = $opportunity->applications;
+        return view('profile.organization.applications', compact('opportunity', 'applications'));
+    }
+
 }

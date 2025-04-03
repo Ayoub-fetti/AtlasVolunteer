@@ -7,6 +7,7 @@ use App\Models\Organization;
 use App\Models\Review;
 use App\Models\Opportunity;
 use App\Models\Donation;
+use App\Models\Application;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,5 +62,13 @@ class User extends Authenticatable
     public function donations()
     {
         return $this->hasMany(Donation::class);
+    }
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+    public function opportunities()
+    {
+        return $this->hasMany(Opportunity::class);
     }
 }
