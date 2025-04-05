@@ -8,6 +8,7 @@ use App\Models\Review;
 use App\Models\Opportunity;
 use App\Models\Donation;
 use App\Models\Application;
+use App\Models\Conversation;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,5 +71,13 @@ class User extends Authenticatable
     public function opportunities()
     {
         return $this->hasMany(Opportunity::class);
+    }
+    public function conversations()
+    {
+        return $this->hasMany(Conversation::class, 'user_id');
+    }
+    public function receivedConversations()
+    {
+        return $this->hasMany(Conversation::class, 'receiver_id');
     }
 }

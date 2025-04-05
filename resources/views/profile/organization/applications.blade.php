@@ -16,10 +16,9 @@
                 <tbody>
                     @foreach ($applications as $application)
                         <tr>
-                            <td class="border border-gray-300  px-4 py-2">{{ $application->user->name }}</td>
+                            <td class="border border-gray-300  px-4 py-2">{{ ucfirst($application->user->name) }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $application->user->email }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $application->status }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $application->motivation }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ ucfirst($application->status) }}</td>
                             <td class="border border-gray-300 px-4 py-2">
                                 <a href="{{ route('opportunity.manage' , $application->id) }}" class="text-green-600 hover:text-green-800">Manage</a>
                             </td>

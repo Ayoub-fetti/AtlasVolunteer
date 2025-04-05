@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\organization\OpporunityController;
 use App\Http\Controllers\organization\OrganizationProfileController;
 use App\Http\Controllers\volunteer\ApplyOpportuniyController;
@@ -65,4 +66,15 @@ Route::get('/opportunities/{id}/applications',[OpporunityController::class ,'app
 // application management
 Route::get('/opportunity/management/{id}',[OpporunityController::class, 'manage'])->name('opportunity.manage');
 Route::put('/opportunity/management/{id}',[OpporunityController::class, 'management'])->name('opportunity.management');
+
+
+// messages 
+Route::get('/messages', [MessageController::class, 'showMessages'])->name('messages.show');
+Route::post('/messages', [MessageController::class, 'sendMessage'])->name('messages.send');
+Route::get('/messages', [MessageController::class, 'index'])->name('messages.index'); // Liste des conversations
+Route::get('/messages/{conversation}', [MessageController::class, 'show'])->name('messages.show'); // Messages d'une conver
+Route::post('/messages/{conversation}', [MessageController::class, 'send'])->name('messages.send'); // Envoyer un message
+Route::post('/conversations', [MessageController::class, 'createConversation'])->name('conversations.create');
+
+
 

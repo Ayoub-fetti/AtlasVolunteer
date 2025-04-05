@@ -19,6 +19,10 @@
     <a href="{{route('donation.index')}}"> 
         Go to Donation
     </a>
+    <br>
+    <a href="{{route('messages.index')}}"> 
+        Go to conversations
+    </a>
 
     @if($opportunities->count() > 0)
     <div class="opportunities-list mt-4">
