@@ -12,6 +12,7 @@
 
     <form id="send-message-form" action="{{ route('messages.send', $conversationId) }}" method="POST">
         @csrf
+        <input type="hidden" name="receiver_id" value="{{ $receiver->id }}">
         <textarea name="content" placeholder="Type your message..." required class="border rounded p-2 w-full"></textarea>
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Send</button>
     </form>
