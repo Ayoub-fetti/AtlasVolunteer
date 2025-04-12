@@ -4,7 +4,12 @@
         @foreach($conversations as $conversation)
         <li>
             <a href="{{ route('messages.show', $conversation->id) }}">
-                Conversation with {{ $conversation->receiver->name }}
+                @if($conversation->user_id == auth()->id())
+                    Conversation with {{ $conversation->receiver->name }}
+                @else
+                    Conversation with {{ $conversation->user->name }}
+                @endif
+                <small>{{ $conversation->updated_at->diffForHumans() }}</small>
             </a>
         </li>
         @endforeach

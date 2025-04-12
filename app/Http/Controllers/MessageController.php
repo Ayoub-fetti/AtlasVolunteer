@@ -13,7 +13,10 @@ class MessageController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $conversations = $user->conversations()->with('receiver')->get();
+
+        $sentConversations = $user->conversations()->with('receiver')->get();
+        $receivedConversations = Conversation::where('receiver_id', $user->id)->with('user')->get();
+        $conversations = $sentConversations->concat($receivedConversations);
         $users = User::where('id', '!=', $user->id)->get();
         return view('conversation', compact('conversations','users'));
     }
