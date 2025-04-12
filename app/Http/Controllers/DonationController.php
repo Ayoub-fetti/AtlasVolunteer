@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Donation;
 use App\Models\Location;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -110,4 +112,30 @@ class DonationController extends Controller
         $user = Auth::user();
         return redirect()->route('donation.list')->with('success', 'Donation deleted successfully.');
     }
+    public function apply(string $id)
+{
+    $donation = Donation::findOrFail($id);
+    
+    // bach nt2akad bli ma ydirch apply ldonation daylo 
+    if ($donation->user_id === Auth::id()) {
+        return redirect()->back()->with('error', 'You cannot apply to your own donation.');
+    }
+    
+    // ima ghadi ncreer wla nl9a conversation dyalo m3a mol donation
+    $conversation = Conversation::firstOrCreate([
+        'user_id' => Auth::id(),
+        'receiver_id' => $donation->user_id,
+    ]);
+    
+    // ghadi nsifet message lmol donation
+    Message::create([
+        'conversation_id' => $conversation->id,
+        'sender_id' => Auth::id(),
+        'receiver_id' => $donation->user_id,
+        'content' => "Hello, I'm interested in your donation: '{$donation->title}'. I would like to apply for it.",
+    ]);
+    
+    return redirect()->route('messages.show', $conversation->id)
+        ->with('success', 'You have successfully applied for this donation and a conversation has been started with the owner.');
+}
 }

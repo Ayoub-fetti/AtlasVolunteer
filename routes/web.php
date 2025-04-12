@@ -76,5 +76,8 @@ Route::get('/messages/{conversation}', [MessageController::class, 'show'])->name
 Route::post('/messages/{conversation}', [MessageController::class, 'send'])->name('messages.send'); // Envoyer un message
 Route::post('/conversations', [MessageController::class, 'createConversation'])->name('conversations.create');
 
+// apply donation 
+Route::post('/donations/{id}/apply', [DonationController::class, 'apply'])->name('donations.apply');
+
 
 
