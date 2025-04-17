@@ -43,11 +43,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/donations/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');
     Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donation.show');
     // messages 
-    Route::get('/messages', [MessageController::class, 'showMessages'])->name('messages.show');
-    Route::post('/messages', [MessageController::class, 'sendMessage'])->name('messages.send');
-    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index'); // Liste des conversations
-    Route::get('/messages/{conversation}', [MessageController::class, 'show'])->name('messages.show'); // Messages d'une conver
-    Route::post('/messages/{conversation}', [MessageController::class, 'send'])->name('messages.send'); // Envoyer un message
+
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index'); 
+    Route::get('/messages/{conversation}', [MessageController::class, 'show'])->name('messages.show'); 
+    Route::post('/messages/{conversation}', [MessageController::class, 'send'])->name('messages.send'); 
     Route::post('/conversations', [MessageController::class, 'createConversation'])->name('conversations.create');
     // apply donation 
     Route::post('/donations/{id}/apply', [DonationController::class, 'apply'])->name('donations.apply');
