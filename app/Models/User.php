@@ -80,4 +80,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Conversation::class, 'receiver_id');
     }
+    public function hasRole($role){
+        return $this->role == $role;
+    }
 }

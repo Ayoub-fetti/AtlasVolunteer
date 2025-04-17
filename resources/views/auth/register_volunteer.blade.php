@@ -44,26 +44,26 @@
         @enderror
         <br><br>
 
-        <label for="date_of_birth">Date of Birth:</label>
+        {{-- <label for="date_of_birth">Date of Birth:</label>
         <input type="date" id="date_of_birth" name="date_of_birth">
         @error('date_of_birth')
             <div style="color: red;">{{ $message }}</div>
         @enderror
-        <br><br>
+        <br><br> --}}
 
-        <label for="skills">Skills:</label>
+        {{-- <label for="skills">Skills:</label>
         <textarea id="skills" name="skills"></textarea>
         @error('skills')
             <div style="color: red;">{{ $message }}</div>
         @enderror
-        <br><br>
+        <br><br> --}}
 
-        <label for="interests">Interests:</label>
+        {{-- <label for="interests">Interests:</label>
         <textarea id="interests" name="interests"></textarea>
         @error('interests')
             <div style="color: red;">{{ $message }}</div>
         @enderror
-        <br><br>
+        <br><br> --}}
 
         <button type="submit">Register as Volunteer</button>
         <x-button href="{{ url('/auth/google') }}" class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition duration-150 ease-in-out">

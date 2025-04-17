@@ -23,6 +23,11 @@
     <a href="{{route('messages.index')}}"> 
         Go to conversations
     </a>
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit">Logout</button>
+
+    </form>
 
     @if($opportunities->count() > 0)
     <div class="opportunities-list mt-4">

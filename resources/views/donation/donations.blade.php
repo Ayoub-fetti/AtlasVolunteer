@@ -10,7 +10,7 @@
         <img src="{{ asset('storage/' . $donation->image )}}" alt="{{ $donation->title }}" style="width: 100px; height: 100px;">
             <li>{{ $donation->title }}</li>
             <li>{{ $donation->description }}</li>
-            <li>{{ $donation->location->place_name}}</li>
+            <li>{{ $donation->location->place_name ?? 'No location'}}</li>
             <li>{{ $donation->status }}</li>
             <a href="{{ route('donation.show', $donation->id) }}" class="text-orange-500">View Details</a>
             <form action="{{ route('donations.apply', $donation->id) }}" method="POST" class="inline">
