@@ -12,11 +12,9 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'description',
-        'icon',
     ];
     public function opportunities()
     {
-        return $this->belongsToMany(Opportunity::class);
+        return $this->hasMany(Opportunity::class);
     }
 }

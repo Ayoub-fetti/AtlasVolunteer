@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Opportunity;
+use App\Models\Donation;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,7 @@ class Organization extends Model
     protected $fillable = [
         'user_id',
         'organization_name',
-        'description',
+        'bio',
         'organization_type',
         'website',
         'logo',
@@ -22,6 +23,15 @@ class Organization extends Model
         'is_verified',
         'verified_at',
     ];
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'organization_profiles';
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -33,5 +43,9 @@ class Organization extends Model
     public function opportunities()
     {
         return $this->hasMany(Opportunity::class);
+    }
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
     }
 }
