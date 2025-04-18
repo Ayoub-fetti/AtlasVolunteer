@@ -10,7 +10,7 @@ use App\Models\Application;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Notifications\Notifiable;
 
 class Opportunity extends Model
 {

@@ -8,6 +8,8 @@ use App\Models\Volunteer;
 use App\Models\Category;
 use App\Models\Location;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Notifications\NewOpportunityNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -83,9 +85,15 @@ class OpporunityController extends Controller
             'is_remote' => $request->is_remote ?? true,
             'status' => $request->status,
         ]);
+        // Envoyer une notification a tous les benevoles
+        $volunteers = User::where('role','volunteer')->where('email_verified_at','!=',null)->get();
+        
+        foreach ($volunteers as $volunteer) {
+            $volunteer->notify(new NewOpportunityNotification($opportunity));
+        }
 
 
-        return redirect()->route('opportunity.index')->with('success', 'Opportunity created successfully.');
+        return redirect()->route('opportunity.index')->with('success', 'Opportunity created successfully and volunteers have been notified');
     }
 
     public function show(string $id)
