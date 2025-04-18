@@ -6,6 +6,8 @@ use App\Models\Conversation;
 use App\Models\Donation;
 use App\Models\Location;
 use App\Models\Message;
+use App\Models\User;
+use App\Notifications\NewDonationNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,6 +57,12 @@ class DonationController extends Controller
             'status' => $request->input('status'),
             'image' => $validatedData['image'],
         ]);
+        // Envoyer une notification a tous les benevoles
+        $volunteers = User::where('role','volunteer')->where('email_verified_at','!=',null)->get();
+
+        foreach ($volunteers as $volunteer) {
+            $volunteer->notify(new NewDonationNotification($donation));
+        }
 
         return redirect()->route('donation.list')->with('success', 'Donation created successfully.');
     }
@@ -74,31 +82,6 @@ class DonationController extends Controller
     }
 
 
-    // public function update(Request $request, string $id)
-    // {
-    //     $request->validate([
-    //         'title' => 'nullable|string|max:255',
-    //         'description' => 'nullable|string',
-    //         'location' => 'nullable|exists:locations,id',
-    //         'status' => 'required|in:available,reserved,completed',
-    //         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //        ]); 
-           
-    //     $donation = Donation::findOrFail($id);
-    //     if ($request->hasFile('image')) {
-    //         $validatedData['image'] = $request->file('image')->store('opportunities_images', 'public');
-    //     }
-    //     $donation->update([
-    //         'title' => $request->input('title'),
-    //         'description' => $request->input('description'),
-    //         'location' => $request->input('location'),
-    //         'status' => $request->input('status'),
-    //         'image' => $validatedData['image'],
-    //     ]);
-    //     return redirect()->route('donation.list', compact('donation'))->with('success', 'Donation updated successfully.'); 
-
-
-    // }
     public function update(Request $request, string $id)
 {
     $request->validate([

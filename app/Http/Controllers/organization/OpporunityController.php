@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\ApplicationStatusUpdatedNotification;
 use App\Notifications\NewOpportunityNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -115,7 +116,6 @@ class OpporunityController extends Controller
  
     public function update(Request $request, string $id)
     {
-        // Valider les données entrantes
         $request->validate([
             'title' => 'nullable|string|max:255',
             'description' => 'nullable|string',
@@ -196,6 +196,10 @@ class OpporunityController extends Controller
 
         $application = Application::findOrFail($applicationId);
 
+        // ghadi nstocker status l9dim bach ntchecker wach changer wla non
+
+        $oldStatus = $application->status;
+
         $application->update([
             'status' => $request->status,
             'approved_at' => $request->approved_at,
@@ -203,7 +207,14 @@ class OpporunityController extends Controller
             'completed_at' => $request->completed_at,
         ]);
 
-        return redirect()->back()->with('success', 'Application updated successfully.');
+        $application->load('opportunity', 'user');
+            // Only send notification if status has changed
+        if ($oldStatus !== $request->status) {
+            $application->user->notify(new ApplicationStatusUpdatedNotification($application));
+            return redirect()->back()->with('success', 'Application status updated successfully and volunteer has been notified.');
+        }
+
+        return redirect()->back()->with('success', 'Application updated successfully and volunteer has been notified .');
     }
 
 }
