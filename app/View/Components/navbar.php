@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Button extends Component
+class NavBar extends Component
 {
     public $color;
 
