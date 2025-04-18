@@ -36,9 +36,6 @@ class AuthController extends Controller
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
                 'phone' => 'nullable|string',
-                'date_of_birth' => 'nullable|date',
-                'skills' => 'nullable|string',
-                'interests' => 'nullable|string',
             ]);
 
 
@@ -49,18 +46,21 @@ class AuthController extends Controller
                 'phone' => $request->phone,
                 'role' => 'volunteer',
             ]);
-
-
+            
+            
             Volunteer::create([
                 'user_id' => $user->id,
                 'date_of_birth' => $request->date_of_birth,
                 'skills' => $request->skills,
                 'interests' => $request->interests,
             ]);
+            
+            // send email verification notification
+            $user->sendEmailVerificationNotification();
 
             Auth::login($user);
 
-            return redirect()->route('home')->with('success', 'Volunteer registered successfully!');
+            return redirect()->route('verification.notice')->with('status', 'Please check your email for a verification link');
         }
             // Handle organization registration
     public function registerOrganization(Request $request)
@@ -70,7 +70,6 @@ class AuthController extends Controller
                 'email' => 'required|string|email|max:255|unique:users',
                 'phone' => 'nullable|string',
                 'password' => 'required|string|min:8|confirmed',
-                // 'bio' => 'nullable|string',
                 'website' => 'nullable|url',
             ]);
 
@@ -79,20 +78,19 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
-                // 'bio' => $request->bio,
                 'role' => 'organization',
             ]);
 
             Organization::create([
                 'user_id' => $user->id,
                 'organization_name' => $request->organization_name,
-                // 'bio' => $request->bio,
                 'website' => $request->website,
             ]);
 
+            $user->sendEmailVerificationNotification();
             Auth::login($user);
 
-            return redirect()->route('home')->with('success', 'Organization registered successfully!');
+            return redirect()->route('verification.notice')->with('success', 'Organization registered successfully!');
         }
 
 
@@ -105,8 +103,12 @@ class AuthController extends Controller
 
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-
-                return redirect()->intended('home');
+                
+                if (Auth::user()->hasVerifiedEmail()) {
+                    return redirect()->intended('home');
+                } else {
+                    return redirect()->route('verification.notice');
+                }
             }
 
             return back()->withErrors([

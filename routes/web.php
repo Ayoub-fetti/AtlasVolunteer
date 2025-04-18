@@ -9,10 +9,25 @@ use App\Http\Controllers\organization\OpporunityController;
 use App\Http\Controllers\organization\OrganizationProfileController;
 use App\Http\Controllers\volunteer\ApplyOpportuniyController;
 use App\Http\Controllers\volunteer\ProfileController;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/home')->with('status', 'Your email has been verified!');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('status', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 
 
@@ -27,7 +42,7 @@ Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/home', [OpporunityController::class, 'list'])->name('home');
     Route::get('/opportunity', [OpporunityController::class, 'index'])->name('opportunity.index');
     Route::get('/opportunity/add', [OpporunityController::class, 'create'])->name('opportunity.create');
@@ -53,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
     
 });
 
-Route::middleware(['role:volunteer'])->group(function () {
+Route::middleware(['auth','verified','role:volunteer'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
     // apply opportunity
@@ -81,6 +96,9 @@ Route::middleware(['auth','role:organization'])->group(function () {
     Route::put('/opportunity/management/{id}',[OpporunityController::class, 'management'])->name('opportunity.management');
     
 });
+
+// Add these routes
+
 
 
 
