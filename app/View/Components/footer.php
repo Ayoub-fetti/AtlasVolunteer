@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class navbar extends Component
+class footer extends Component
 {
     public $color;
 
@@ -15,6 +15,6 @@ class navbar extends Component
 
     public function render()
     {
-        return view('components.navbar');
+        return view('components.footer');
     }
 }
