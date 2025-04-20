@@ -29,8 +29,12 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('status', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
+// routes accessible for every one 
+Route::get('/home', [OpporunityController::class, 'list'])->name('home');
+Route::get('/opportunities/{id}',[OpporunityController::class, 'show'])->name('opportunities.show');
 
-
+Route::get('/donations', [DonationController::class, 'index'])->name('donation.index');
+Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donation.show');
 
 Route::get('/register/{role}', [AuthController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('/register/volunteer', [AuthController::class, 'registerVolunteer'])->name('register.volunteer');
@@ -43,20 +47,16 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleC
 
 
 Route::middleware(['auth','verified'])->group(function () {
-    Route::get('/home', [OpporunityController::class, 'list'])->name('home');
     Route::get('/opportunity', [OpporunityController::class, 'index'])->name('opportunity.index');
     Route::get('/opportunity/add', [OpporunityController::class, 'create'])->name('opportunity.create');
     Route::get('/opportunities',[OpporunityController::class, 'list'])->name('opportunities.list');
-    Route::get('/opportunities/{id}',[OpporunityController::class, 'show'])->name('opportunities.show');
     // donation
-    Route::get('/donations', [DonationController::class, 'index'])->name('donation.index');
     Route::get('/donations/my', [DonationController::class, 'list'])->name('donation.list');
     Route::get('/donations/create', [DonationController::class, 'create'])->name('donation.create');
     Route::get('/donations/edit/{id}', [DonationController::class, 'edit'])->name('donation.edit');
     Route::post('/donations', [DonationController::class, 'store'])->name('donation.store');
     Route::put('/donations/{id}', [DonationController::class, 'update'])->name('donation.update');
     Route::delete('/donations/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');
-    Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donation.show');
     // messages 
 
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index'); 
@@ -96,8 +96,6 @@ Route::middleware(['auth','role:organization'])->group(function () {
     Route::put('/opportunity/management/{id}',[OpporunityController::class, 'management'])->name('opportunity.management');
     
 });
-
-// Add these routes
 
 
 

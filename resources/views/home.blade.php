@@ -10,26 +10,9 @@
         <p>{{ session('error') }}</p>
     </div>
     @endif
+    
 
-    <h1>hello this is home page</h1>
-    <a href="{{ auth()->user()->role === 'volunteer' ? route('profile.index') : route('organization.index') }}"> 
-        Go to profile
-    </a>
-    <br>
-    <a href="{{route('donation.index')}}"> 
-        Go to Donation
-    </a>
-    <br>
-    <a href="{{route('messages.index')}}"> 
-        Go to conversations
-    </a>
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit">Logout</button>
-
-    </form>
-
-    @if($opportunities->count() > 0)
+    @if(isset($opportunities) && $opportunities->count() > 0)
     <div class="opportunities-list mt-4">
         <h2>Available Opportunities</h2>
         <ul>
@@ -42,16 +25,22 @@
                 <p>Location: {{ $opportunity->location->place_name }}</p>
                 <h3>Status: {{$opportunity->status}}</h3>
                 <a href="{{ route('opportunities.show', $opportunity->id) }}" class="text-orange-500">View Details</a>
+                
+                @auth
                 <form action="{{ route('opportunity.apply', $opportunity->id) }}" method="POST" style="display: inline;">
                     @csrf
                     <textarea name="motivation" placeholder="Enter your motivation" required class="border rounded p-2"></textarea>
                     <button type="submit" class="text-blue-500">Apply</button>
                 </form>
+                @else
+                <p class="text-gray-500 mt-2">Please <a href="{{ route('login.form') }}" class="text-blue-500">login</a> to apply for this opportunity</p>
+                @endauth
             </li>
             @endforeach
         </ul>
     </div>
-    @else
+    @elseif(isset($opportunities))
     <p>No opportunities available</p>
     @endif
+    <x-footer />
 </x-app>

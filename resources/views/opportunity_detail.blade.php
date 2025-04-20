@@ -20,4 +20,5 @@
             <p>No cover image available.</p>
         @endif
     </div>
+    <x-footer />
 </x-app>

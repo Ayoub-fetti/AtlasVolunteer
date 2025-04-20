@@ -11,12 +11,24 @@
             <!-- Navigation Links -->
             <div class="hidden md:flex items-center space-x-6">
                 <a href="/" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                <a href="{{ route('home') }}" class="text-gray-600 hover:text-indigo-600 transition">Opportunities</a>
+                <a href="{{ route('donation.index') }}" class="text-gray-600 hover:text-indigo-600 transition">Donations</a>
                 <a href="#about" class="text-gray-600 hover:text-indigo-600 transition">About</a>
                 <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                
+                @auth
+                <a href="{{ auth()->user()->role === 'volunteer' ? route('profile.index') : route('organization.index') }}" class="text-gray-600 hover:text-indigo-600 transition">
+                    Profile
+                </a>
+                <a href="{{ route('messages.index') }}" class="text-gray-600 hover:text-indigo-600 transition">
+                    Messages
+                </a>
+                @endauth
             </div>
             
             <!-- Authentication Links -->
             <div class="flex items-center space-x-4">
+                @guest
                 <a href="{{ route('login.form') }}" class="text-gray-600 hover:text-indigo-600 transition">
                     Login
                 </a>
@@ -36,7 +48,14 @@
                         </a>
                     </div>
                 </div>
-                
+                @else
+                <form action="{{ route('logout') }}" method="POST" class="m-0">
+                    @csrf
+                    <button type="submit" class="text-gray-600 hover:text-indigo-600 transition">
+                        Logout
+                    </button>
+                </form>
+                @endguest
             </div>
         </div>
     </div>
