@@ -19,10 +19,13 @@ class OpporunityController extends Controller
 
     public function index()
     {   
+        
         $user = Auth::user();
         if ($user->role !== 'organization') {
             return redirect()->route('home')->with('error', 'You are not authorized to access this page.');
         }
+
+        
         $opportunities = Opportunity::where('user_id', Auth::id())->with(['categories', 'location'])->get();
         $organization = Organization::where('user_id', Auth::id())->first();
 
@@ -37,7 +40,7 @@ class OpporunityController extends Controller
 
     }
     public function list() {
-        $opportunities = Opportunity::with(['categories', 'location'])->get();
+        $opportunities = Opportunity::with(['categories', 'location'])->paginate(10);
         return view('home', compact('opportunities'));
     }
 
@@ -89,9 +92,9 @@ class OpporunityController extends Controller
         // Envoyer une notification a tous les benevoles
         $volunteers = User::where('role','volunteer')->where('email_verified_at','!=',null)->get();
         
-        foreach ($volunteers as $volunteer) {
-            $volunteer->notify(new NewOpportunityNotification($opportunity));
-        }
+        // foreach ($volunteers as $volunteer) {
+        //     $volunteer->notify(new NewOpportunityNotification($opportunity));
+        // }
 
 
         return redirect()->route('opportunity.index')->with('success', 'Opportunity created successfully and volunteers have been notified');
@@ -185,7 +188,7 @@ class OpporunityController extends Controller
         return view('profile.organization.manage', compact('application'));
     }
 
-   public function management(Request $request, $applicationId)
+    public function management(Request $request, $applicationId)
     {
         $request->validate([
             'status' => 'required|in:pending,approved,rejected,completed',

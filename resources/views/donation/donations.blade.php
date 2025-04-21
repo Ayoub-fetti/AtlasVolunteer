@@ -25,5 +25,8 @@
             @endauth
         @endforeach
     </ul>
+    <div>
+        {{ $donations->links() }}
+    </div>
     <x-footer />
 </x-app>

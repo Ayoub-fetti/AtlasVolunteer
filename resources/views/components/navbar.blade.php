@@ -3,8 +3,8 @@
         <div class="flex justify-between items-center py-4">
             <!-- Logo/Site Name -->
             <div class="flex items-center">
-                <a href="/" class="text-xl font-bold text-indigo-600">
-                    Volunteer Connect
+                <a href="/" class="text-xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                    Atlas Volunteer
                 </a>
             </div>
             

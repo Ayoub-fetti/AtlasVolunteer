@@ -42,5 +42,6 @@
     @elseif(isset($opportunities))
     <p>No opportunities available</p>
     @endif
+    {{ $opportunities->links("pagination::bootstrap-4") }}
     <x-footer />
 </x-app>

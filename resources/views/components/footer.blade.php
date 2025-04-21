@@ -4,8 +4,8 @@
             <!-- Brand section -->
             <div class="col-span-1 md:col-span-1">
                 <a href="{{ route('home') }}" class="flex items-center mb-4 space-x-3">
-                    <img src="{{ asset('images/logo.png') }}" class="h-10 w-auto" alt="Volunteer Connect Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/40x40?text=VC'">
-                    <span class="self-center text-xl font-semibold dark:text-white">AtlasVolunteer</span>
+                    <img src="{{ asset('images/icon.png') }}" class="h-10 w-auto" alt="Volunteer Connect Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/40x40?text=VC'">
+                    <span class="self-center text-xl font-semibold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent dark:text-white">AtlasVolunteer</span>
                 </a>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
                     Connecting volunteers with organizations to make a positive impact in our communities.
