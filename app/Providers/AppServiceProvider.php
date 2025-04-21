@@ -20,7 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Paginator::useBootstrap(); // Removed as it is not a valid method
-        Paginator::useTailwind(); // for Tailwind styling
+        Paginator::useTailwind(); 
     }
 }

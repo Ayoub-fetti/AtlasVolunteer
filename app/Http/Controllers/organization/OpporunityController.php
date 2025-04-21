@@ -102,7 +102,7 @@ class OpporunityController extends Controller
 
     public function show(string $id)
     {
-        $opportunity = Opportunity::with(['categories', 'location'])->findOrFail($id);
+        $opportunity = Opportunity::with(['categories', 'location','organization'])->findOrFail($id);
         return view('opportunity_detail', compact('opportunity'));
     }
 
@@ -188,36 +188,79 @@ class OpporunityController extends Controller
         return view('profile.organization.manage', compact('application'));
     }
 
+    // public function management(Request $request, $applicationId)
+    // {
+    //     $request->validate([
+    //         'status' => 'required|in:pending,approved,rejected,completed',
+    //         'approved_at' => 'nullable|date',
+    //         'hours_served' => 'nullable|integer|min:0',
+    //         'completed_at' => 'nullable|date',
+    //     ]);
+
+    //     $application = Application::findOrFail($applicationId);
+
+    //     // ghadi nstocker status l9dim bach ntchecker wach changer wla non
+
+    //     $oldStatus = $application->status;
+
+    //     $application->update([
+    //         'status' => $request->status,
+    //         'approved_at' => $request->approved_at,
+    //         'hours_served' => $request->hours_served,
+    //         'completed_at' => $request->completed_at,
+    //     ]);
+
+    //     $application->load('opportunity', 'user');
+    //         // Only send notification if status has changed
+    //     if ($oldStatus !== $request->status) {
+    //         $application->user->notify(new ApplicationStatusUpdatedNotification($application));
+    //         return redirect()->back()->with('success', 'Application status updated successfully and volunteer has been notified.');
+    //     }
+
+    //     return redirect()->back()->with('success', 'Application updated successfully and volunteer has been notified .');
+    // }
     public function management(Request $request, $applicationId)
-    {
-        $request->validate([
-            'status' => 'required|in:pending,approved,rejected,completed',
-            'approved_at' => 'nullable|date',
-            'hours_served' => 'nullable|integer|min:0',
-            'completed_at' => 'nullable|date',
-        ]);
+{
+    $request->validate([
+        'status' => 'required|in:pending,approved,rejected,completed',
+        'approved_at' => 'nullable|date',
+        'hours_served' => 'nullable|integer|min:0',
+        'completed_at' => 'nullable|date',
+    ]);
 
-        $application = Application::findOrFail($applicationId);
+    $application = Application::findOrFail($applicationId);
+    $oldStatus = $application->status;
+    $opportunity = Opportunity::findOrFail($application->opportunity_id);
 
-        // ghadi nstocker status l9dim bach ntchecker wach changer wla non
+    $application->update([
+        'status' => $request->status,
+        'approved_at' => $request->approved_at,
+        'hours_served' => $request->hours_served,
+        'completed_at' => $request->completed_at,
+    ]);
 
-        $oldStatus = $application->status;
-
-        $application->update([
-            'status' => $request->status,
-            'approved_at' => $request->approved_at,
-            'hours_served' => $request->hours_served,
-            'completed_at' => $request->completed_at,
-        ]);
-
-        $application->load('opportunity', 'user');
-            // Only send notification if status has changed
-        if ($oldStatus !== $request->status) {
-            $application->user->notify(new ApplicationStatusUpdatedNotification($application));
-            return redirect()->back()->with('success', 'Application status updated successfully and volunteer has been notified.');
+    $application->load('opportunity', 'user');
+    
+    // Update the registered_volunteers count when the application is approved
+    if ($request->status === 'approved' && $oldStatus !== 'approved') {
+        // Increment registered_volunteers count
+        $opportunity->increment('registered_volunteers');
+    } 
+    // If the application was previously approved but now rejected, decrement the count
+    elseif ($oldStatus === 'approved' && $request->status !== 'approved') {
+        // Make sure not to go below zero
+        if ($opportunity->registered_volunteers > 0) {
+            $opportunity->decrement('registered_volunteers');
         }
-
-        return redirect()->back()->with('success', 'Application updated successfully and volunteer has been notified .');
     }
+
+    // Only send notification if status has changed
+    if ($oldStatus !== $request->status) {
+        $application->user->notify(new ApplicationStatusUpdatedNotification($application));
+        return redirect()->back()->with('success', 'Application status updated successfully and volunteer has been notified.');
+    }
+
+    return redirect()->back()->with('success', 'Application updated successfully and volunteer has been notified.');
+}
 
 }

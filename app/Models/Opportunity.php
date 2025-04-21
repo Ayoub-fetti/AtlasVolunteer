@@ -37,7 +37,7 @@ class Opportunity extends Model
 
     public function organization()
     {
-        return $this->belongsTo(Organization::class);
+        return $this->hasOneThrough(Organization::class,User::class,'id','user_id','user_id');
     }
     public function volunteers()
     {
@@ -49,7 +49,7 @@ class Opportunity extends Model
     }
     public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class,);
 
     }
     public function location()
