@@ -59,7 +59,6 @@
                                     class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition">
                                     <option value="available" {{ old('status', $donation->status) == 'available' ? 'selected' : '' }}>Disponible</option>
                                     <option value="reserved" {{ old('status',$donation->status) == 'reserved' ? 'selected' : '' }}>Réservé</option>
-                                    <option value="completed" {{ old('status',$donation->status) == 'completed' ? 'selected' : '' }}>Complété</option>
                                 </select>
                                 @error('status')
                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>

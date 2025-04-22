@@ -4,7 +4,7 @@
             <!-- Logo/Site Name -->
             <div class="flex items-center">
                 <a href="/" class="text-xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                    Atlas Volunteer
+                    AtlasVolunteer
                 </a>
             </div>
             
