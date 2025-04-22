@@ -61,8 +61,8 @@
                             </div>
                             <div class="ml-3 text-gray-700">
                                 <h3 class="text-lg font-medium text-gray-900">Address</h3>
-                                <p class="mt-1">123 Volunteer Street</p>
-                                <p>New York, NY 10001</p>
+                                <p class="mt-1">Ave Zitoune </p>
+                                <p>Meknes, 50000</p>
                             </div>
                         </div>
 
@@ -74,7 +74,7 @@
                             </div>
                             <div class="ml-3 text-gray-700">
                                 <h3 class="text-lg font-medium text-gray-900">Phone</h3>
-                                <p class="mt-1">+1 (555) 123-4567</p>
+                                <p class="mt-1">+212 7 77074708</p>
                             </div>
                         </div>
 
@@ -141,13 +141,13 @@
             <!-- Map Section -->
             <div class="mt-12 h-96 rounded-lg shadow-lg overflow-hidden">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d28455.81662490291!2d-5.55694511289732!3d33.84985588761347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e1!3m2!1sfr!2sma!4v1745310561419!5m2!1sfr!2sma" 
-style="border:0;" 
-width="1024"
-height="384"
-allowfullscreen="" 
-loading="lazy" 
-referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+                style="border:0;" 
+                width="1024"
+                height="384"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
     </div>

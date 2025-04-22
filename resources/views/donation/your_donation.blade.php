@@ -1,4 +1,5 @@
 <x-app>
+<div class="h-150">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Notifications -->
         @if (session('success'))
@@ -113,5 +114,6 @@
             @endif
         </div>
     </div>
+</div>
     <x-footer />
 </x-app>

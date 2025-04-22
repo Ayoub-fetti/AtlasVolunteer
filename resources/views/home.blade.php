@@ -1,4 +1,3 @@
-
 <x-app>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Notifications -->
@@ -34,7 +33,7 @@
 
         <!-- Opportunities List -->
         @if(isset($opportunities) && $opportunities->count() > 0)
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-4xl w-full mx-auto">
                 <div class="px-6 py-4 border-b border-gray-200">
                     <h2 class="text-2xl font-bold text-gray-800">Available Opportunities</h2>
                 </div>
@@ -80,37 +79,13 @@
                                         </span>
                                     </div>
                                     
-                                    <div class="mt-5 flex flex-col sm:flex-row gap-4">
+                                    <div class="mt-5">
                                         <a 
                                             href="{{ route('opportunities.show', $opportunity->id) }}" 
                                             class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-4xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
                                             View Details
                                         </a>
-
-                                        @auth
-                                            <form action="{{ route('opportunity.apply', $opportunity->id) }}" method="POST" class="mt-3 sm:mt-0 flex-grow">
-                                                @csrf
-                                                <div class="flex flex-col sm:flex-row gap-2">
-                                                    <textarea 
-                                                        name="motivation" 
-                                                        placeholder="Enter your motivation" 
-                                                        required 
-                                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-10"
-                                                    ></textarea>
-                                                    <button 
-                                                        type="submit" 
-                                                        class="inline-flex items-center px-4 py-2 border border-transparent rounded-4xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-green-500 to-green-800 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                                                    >
-                                                        Apply
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        @else
-                                            <div class="mt-3 sm:mt-0 text-gray-500 text-sm">
-                                                Please <a href="{{ route('login.form') }}" class="text-indigo-600 hover:text-indigo-900 font-medium">login</a> to apply for this opportunity
-                                            </div>
-                                        @endauth
                                     </div>
                                 </div>
                             </div>
