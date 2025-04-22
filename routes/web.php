@@ -15,6 +15,12 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/about', function() {
+    return view('about');
+});
+Route::get('/contact', function() {
+    return view('contact');
+});
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
@@ -50,10 +56,9 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/opportunity', [OpporunityController::class, 'index'])->name('opportunity.index');
     Route::get('/opportunity/add', [OpporunityController::class, 'create'])->name('opportunity.create');
     Route::get('/opportunities',[OpporunityController::class, 'list'])->name('opportunities.list');
-    // donation
-    Route::get('/donations/my', [DonationController::class, 'list'])->name('donation.list');
-    Route::get('/donations/create', [DonationController::class, 'create'])->name('donation.create');
-    Route::get('/donations/edit/{id}', [DonationController::class, 'edit'])->name('donation.edit');
+    Route::get('/donation/my', [DonationController::class, 'list'])->name('donation.list');
+    Route::get('/donation/create', [DonationController::class, 'create'])->name('donation.create');
+    Route::get('/donation/edit/{id}', [DonationController::class, 'edit'])->name('donation.edit');
     Route::post('/donations', [DonationController::class, 'store'])->name('donation.store');
     Route::put('/donations/{id}', [DonationController::class, 'update'])->name('donation.update');
     Route::delete('/donations/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');

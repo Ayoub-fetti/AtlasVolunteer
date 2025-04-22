@@ -219,8 +219,7 @@ class OpporunityController extends Controller
 
     //     return redirect()->back()->with('success', 'Application updated successfully and volunteer has been notified .');
     // }
-    public function management(Request $request, $applicationId)
-{
+    public function management(Request $request, $applicationId){
     $request->validate([
         'status' => 'required|in:pending,approved,rejected,completed',
         'approved_at' => 'nullable|date',

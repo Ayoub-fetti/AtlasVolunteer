@@ -14,12 +14,12 @@
           <div class="flex gap-4">
             <a href="{{ route('home') }}"
             class="bg-white/10 backdrop-blur-sm text-white border border-white font-semibold px-6 py-3 rounded transition hover:bg-white/20">
-            Home Page
+            Opportunities <Page></Page>
          </a>
          
          <a href="#about-us"
             class="bg-white/10 backdrop-blur-md text-white border border-white font-semibold px-6 py-3 rounded transition hover:bg-white/20">
-            Learn More
+            Contact US
          </a>
           </div>
       </div>

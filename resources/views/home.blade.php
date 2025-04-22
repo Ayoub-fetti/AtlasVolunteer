@@ -1,50 +1,4 @@
-{{-- <x-app>
-    @if (session('success'))
-    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-5" role="alert">
-        <p>{{ session('success') }}</p>
-    </div>
-    @endif
 
-    @if (session('error'))
-    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-        <p>{{ session('error') }}</p>
-    </div>
-    @endif
-    
-
-    @if(isset($opportunities) && $opportunities->count() > 0)
-    <div class="opportunities-list mt-4">
-        <h2>Available Opportunities</h2>
-        <ul>
-            @foreach($opportunities as $opportunity)
-            <li>
-                <img src="{{ asset('storage/' . $opportunity->cover )}}" alt="{{ $opportunity->title }}" style="width: 100px; height: 100px;">
-                <h3>{{ $opportunity->title }}</h3>
-                <p>{{ $opportunity->description }}</p>
-                <p>Category: {{ $opportunity->category }}</p>
-                <p>Location: {{ $opportunity->location->place_name }}</p>
-                <h3>Status: {{$opportunity->status}}</h3>
-                <a href="{{ route('opportunities.show', $opportunity->id) }}" class="text-orange-500">View Details</a>
-                
-                @auth
-                <form action="{{ route('opportunity.apply', $opportunity->id) }}" method="POST" style="display: inline;">
-                    @csrf
-                    <textarea name="motivation" placeholder="Enter your motivation" required class="border rounded p-2"></textarea>
-                    <button type="submit" class="text-blue-500">Apply</button>
-                </form>
-                @else
-                <p class="text-gray-500 mt-2">Please <a href="{{ route('login.form') }}" class="text-blue-500">login</a> to apply for this opportunity</p>
-                @endauth
-            </li>
-            @endforeach
-        </ul>
-    </div>
-    @elseif(isset($opportunities))
-    <p>No opportunities available</p>
-    @endif
-    {{ $opportunities->links("pagination::bootstrap-4") }}
-    <x-footer />
-</x-app> --}}
 <x-app>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Notifications -->
@@ -129,7 +83,7 @@
                                     <div class="mt-5 flex flex-col sm:flex-row gap-4">
                                         <a 
                                             href="{{ route('opportunities.show', $opportunity->id) }}" 
-                                            class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                            class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-4xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
                                             View Details
                                         </a>
@@ -146,7 +100,7 @@
                                                     ></textarea>
                                                     <button 
                                                         type="submit" 
-                                                        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                        class="inline-flex items-center px-4 py-2 border border-transparent rounded-4xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-green-500 to-green-800 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                                     >
                                                         Apply
                                                     </button>

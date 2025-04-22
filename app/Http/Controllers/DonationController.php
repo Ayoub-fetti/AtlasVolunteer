@@ -24,10 +24,13 @@ class DonationController extends Controller
     // pour lister juste les donations de l'utilisateur
     public function list()
     {
+        
         $user = Auth::user();
         $donations = Donation::where('user_id', Auth::id())->with('location')->get();
+       
         return view('donation.your_donation', compact('user','donations'));
     }
+
 
     public function create()
     {
