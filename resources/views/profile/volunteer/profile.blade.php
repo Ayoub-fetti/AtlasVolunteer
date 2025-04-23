@@ -155,14 +155,14 @@
                 
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-semibold">Applications</h2>
+                        <h2 class="text-xl font-semibold">Mes applications</h2>
                         <a href="{{ route('opportunity.application') }}" class="text-indigo-600 hover:text-indigo-800 flex items-center">
-                            <span>View All</span>
+                            <span>Afficher tous</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
                         </a>
-                    </div>
+                    </div>  
                     <!-- Applications list would go here -->
                 </div>
             </div>
