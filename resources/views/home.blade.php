@@ -35,7 +35,7 @@
         @if(isset($opportunities) && $opportunities->count() > 0)
                 <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-4xl w-full mx-auto">
                 <div class="px-6 py-4 border-b border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800">Available Opportunities</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">Opportunités disponibles</h2>
                 </div>
                 
                 <ul class="divide-y divide-gray-200">
@@ -84,7 +84,7 @@
                                             href="{{ route('opportunities.show', $opportunity->id) }}" 
                                             class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-4xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
-                                            View Details
+                                            Afficher les détails
                                         </a>
                                     </div>
                                 </div>
@@ -103,8 +103,8 @@
                 <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h3 class="mt-2 text-lg font-medium text-gray-900">No opportunities available</h3>
-                <p class="mt-1 text-gray-500">Check back later for new opportunities.</p>
+                <h3 class="mt-2 text-lg font-medium text-gray-900">Aucune opportunité disponible</h3>
+                <p class="mt-1 text-gray-500">Revenez plus tard pour de nouvelles opportunités. </p>
             </div>
         @endif
     </div>

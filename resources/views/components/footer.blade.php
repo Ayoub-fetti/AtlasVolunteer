@@ -8,8 +8,8 @@
                     <span class="self-center text-xl font-semibold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent dark:text-white">AtlasVolunteer</span>
                 </a>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                    Connecting volunteers with organizations to make a positive impact in our communities.
-                </p>
+                Relier les bénévoles aux organisations pour avoir un impact positif dans nos communautés.  
+              </p>
                 <div class="flex space-x-4">
                     <a href="htpps://www.facebook.com" class="text-gray-500 hover:text-indigo-600 transition-colors">
                         <i class="fab fa-facebook-f"></i>
@@ -25,31 +25,31 @@
 
             <!-- Quick links -->
             <div class="col-span-1">
-                <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Resources</h3>
+                <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Ressources</h3>
                 <ul class="space-y-3">
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">How It Works</a></li>
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Volunteering Tips</a></li>
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Organizations</a></li>
+                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Comment ça marche</a></li>
+                    <li><a href="https://www.volunteersarnia.com/top-10-volunteering-tips/" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Conseils de bénévolat</a></li>
+                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Organisations</a></li>
                 </ul>
             </div>
 
             <!-- Company -->
             <div class="col-span-1">
-                <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Company</h3>
+                <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Entreprise</h3>
                 <ul class="space-y-3">
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">About Us</a></li>
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Blog</a></li>
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Careers</a></li>
+                    <li><a href="/about" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">À propos de nous</a></li>
+                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Bloguer</a></li>
+                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Carrières</a></li>
                 </ul>
             </div>
 
             <!-- Legal -->
             <div class="col-span-1">
-                <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Legal</h3>
+                <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Légale</h3>
                 <ul class="space-y-3">
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Privacy Policy</a></li>
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Terms of Service</a></li>
-                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Cookie Policy</a></li>
+                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">politique de confidentialité</a></li>
+                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Conditions de service</a></li>
+                    <li><a href="#" class="text-base text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">Politique de cookie</a></li>
                 </ul>
             </div>
         </div>
@@ -57,7 +57,7 @@
         <!-- Bottom section with copyright -->
         <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <p class="text-center text-base text-gray-500 dark:text-gray-400">
-                © {{ date('Y') }} Volunteer Connect. All rights reserved.
+                © {{ date('Y') }} Connexion volontaire.Tous droits réservés.
             </p>
         </div>
     </div>

@@ -83,13 +83,13 @@
             <div class="p-6">
                 <!-- Description -->
                 <div class="mb-8">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Description</h2>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">description</h2>
                     <p class="text-gray-700">{{ $opportunity->description }}</p>
                 </div>
 
                 <!-- Details -->
                 <div class="mb-8">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Details</h2>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Détails</h2>
                     <div class="bg-gray-50 rounded-lg p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
@@ -98,7 +98,7 @@
                                 </svg>
                             </div>
                             <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Category</p>
+                                <p class="text-sm font-medium text-gray-900">Catégorie</p>
                                 @php
                                 $category = App\Models\Category::find($opportunity->category);
                                 @endphp

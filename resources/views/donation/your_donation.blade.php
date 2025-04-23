@@ -22,7 +22,7 @@
             <h2 class="text-2xl font-bold text-gray-800">Vos Donations</h2>
             
             <div class="mt-4 sm:mt-0">
-                <a href="{{ route('donation.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <a href="{{ route('donation.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-4xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-800 to-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <svg class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
@@ -73,9 +73,8 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                            {{ $donation->status === 'active' ? 'bg-green-100 text-green-800' : 
-                                              ($donation->status === 'claimed' ? 'bg-blue-100 text-blue-800' : 
-                                              'bg-yellow-100 text-yellow-800') }}">
+                                            {{ $donation->status === 'available' ? 'bg-green-100 text-green-800' : 
+                                            ($donation->status === 'reserved' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') }}">
                                             {{ ucfirst($donation->status) }}
                                         </span>
                                     </td>

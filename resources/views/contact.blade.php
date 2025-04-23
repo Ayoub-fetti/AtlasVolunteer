@@ -4,10 +4,10 @@
             <!-- Header Section -->
             <div class="text-center mb-12">
                 <h1 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                    <span class="block">Contact Us</span>
+                    <span class="block">Contactez-nous</span>
                 </h1>
                 <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                    Have questions or want to learn more about Atlas Volunteer? Get in touch with our team.
+                    Vous avez des questions ou vous voulez en savoir plus sur le bénévolat d'Atlas?Contactez notre équipe.
                 </p>
             </div>
 
@@ -15,12 +15,12 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <!-- Contact Form -->
                 <div class="bg-white rounded-lg shadow-lg p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Send us a message</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Envoyez-nous un message</h2>
                     
                     <form action="#" method="POST" class="space-y-6">
                         @csrf
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
                             <input type="text" name="name" id="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                         </div>
 
@@ -30,7 +30,7 @@
                         </div>
 
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                            <label for="subject" class="block text-sm font-medium text-gray-700">Sujet</label>
                             <input type="text" name="subject" id="subject" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                         </div>
 
@@ -41,7 +41,7 @@
 
                         <div>
                             <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300 shadow-md">
-                                Send Message
+                                Envoyer un message
                             </button>
                         </div>
                     </form>
@@ -49,7 +49,7 @@
 
                 <!-- Contact Information -->
                 <div class="bg-white rounded-lg shadow-lg p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Get in touch</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Entrer en contact</h2>
                     
                     <div class="space-y-8">
                         <div class="flex items-start">
@@ -73,7 +73,7 @@
                                 </svg>
                             </div>
                             <div class="ml-3 text-gray-700">
-                                <h3 class="text-lg font-medium text-gray-900">Phone</h3>
+                                <h3 class="text-lg font-medium text-gray-900">Téléphone</h3>
                                 <p class="mt-1">+212 7 77074708</p>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                                 </svg>
                             </div>
                             <div class="ml-3 text-gray-700">
-                                <h3 class="text-lg font-medium text-gray-900">Hours</h3>
+                                <h3 class="text-lg font-medium text-gray-900">Heures</h3>
                                 <p class="mt-1">Monday - Friday: 9AM - 5PM</p>
                                 <p>Saturday: 10AM - 2PM</p>
                                 <p>Sunday: Closed</p>
@@ -107,7 +107,7 @@
 
                     <!-- Social Media Links -->
                     <div class="mt-8">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">Follow Us</h3>
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Suivez-nous</h3>
                         <div class="flex space-x-5">
                             <a href="#" class="text-gray-400 hover:text-indigo-600 transition-colors duration-300">
                                 <span class="sr-only">Facebook</span>

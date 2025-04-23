@@ -4,10 +4,10 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-                        About Atlas Volunteer
+                        À propos AtlasVolunteer
                     </h1>
                     <p class="mt-6 max-w-2xl mx-auto text-xl">
-                        Connecting passionate volunteers with organizations to create positive change in our communities.
+                        Connecter des bénévoles passionnés avec des organisations pour créer un changement positif dans nos communautés.
                     </p>
                 </div>
             </div>
@@ -18,16 +18,16 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:grid lg:grid-cols-2 lg:gap-x-8">
                     <div>
-                        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Our Mission</h2>
+                        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Notre mission</h2>
                         <div class="mt-16">
                             <p class="mt-4 text-lg text-gray-500">
-                                Atlas Volunteer is dedicated to connecting volunteers with meaningful opportunities that make a difference. 
-                                We believe that everyone has skills and talents that can contribute to creating positive change in the world.
+                                Atlas Volunteer se consacre à la connexion des bénévoles à des opportunités significatives qui font la différence.
+                                Nous pensons que tout le monde a des compétences et des talents qui peuvent contribuer à créer un changement positif dans le monde.
                             </p>
                             <p class="mt-4 text-lg text-gray-500">
-                                Our platform makes it easy for organizations to find committed volunteers, 
-                                and for volunteers to discover causes they're passionate about. Together, we're building 
-                                stronger communities and addressing critical social and environmental challenges.
+                                Notre plateforme permet aux organisations de trouver facilement des bénévoles engagés,
+                                Et pour que les bénévoles découvrent des causes qui les passionnent.Ensemble, nous construisons
+                                Communautés plus fortes et relever des défis sociaux et environnementaux critiques.
                             </p>
                         </div>
                     </div>
@@ -42,9 +42,9 @@
         <div class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Our Values</h2>
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Nos valeurs</h2>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
-                        These core principles guide everything we do at Atlas Volunteer.
+                        Ces principes de base guident tout ce que nous faisons chez Atlas Volunteer.
                     </p>
                 </div>
     
@@ -56,9 +56,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                             </svg>
                         </div>
-                        <h3 class="mt-5 text-lg font-medium text-gray-900">Community Impact</h3>
+                        <h3 class="mt-5 text-lg font-medium text-gray-900">Impact communautaire</h3>
                         <p class="mt-2 text-base text-gray-500">
-                            We believe in the power of collective action to create meaningful change in communities around the world.
+                            Nous croyons au pouvoir de l'action collective pour créer un changement significatif dans les communautés du monde.
                         </p>
                     </div>
     
@@ -71,7 +71,7 @@
                         </div>
                         <h3 class="mt-5 text-lg font-medium text-gray-900">Inclusivity</h3>
                         <p class="mt-2 text-base text-gray-500">
-                            We welcome volunteers from all backgrounds and believe diversity strengthens our ability to make a difference.
+                            Nous accueillons des bénévoles de tous horizons et croyons que la diversité renforce notre capacité à faire une différence.
                         </p>
                     </div>
     
@@ -82,9 +82,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
-                        <h3 class="mt-5 text-lg font-medium text-gray-900">Transparency</h3>
+                        <h3 class="mt-5 text-lg font-medium text-gray-900">Transparence</h3>
                         <p class="mt-2 text-base text-gray-500">
-                            We operate with integrity and openness in all our partnerships and communications.
+                            Nous opérons avec intégrité et ouverture dans tous nos partenariats et communications.
                         </p>
                     </div>
                 </div>
@@ -95,9 +95,9 @@
         <div class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Our Team</h2>
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Notre équipe</h2>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
-                        Meet the passionate individuals behind Atlas Volunteer.
+                        Rencontrez les individus passionnés derrière l'Atlas Volunteer.
                     </p>
                 </div>
     
@@ -108,7 +108,7 @@
                             <img class="mx-auto h-40 w-40 rounded-full object-cover" src="{{ asset('images/ayoub.JPEG') }}" alt="Team member">
                             <div class="space-y-2">
                                 <h3 class="text-lg font-medium text-gray-900">Ayoub Fetti</h3>
-                                <p class="text-indigo-600">Founder & CEO</p>
+                                <p class="text-indigo-600">Fondateur et PDG</p>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                             <img class="mx-auto h-40 w-40 rounded-full object-cover" src="{{ asset('images/ferdaous.jpeg') }}" alt="Team member">
                             <div class="space-y-2">
                                 <h3 class="text-lg font-medium text-gray-900">Ferdaous FETTI</h3>
-                                <p class="text-indigo-600">Project Manager</p>
+                                <p class="text-indigo-600">Responsable Communication</p>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                             <img class="mx-auto h-40 w-40 rounded-full object-cover" src="{{ asset('images/mehdi.jpg') }}" alt="Team member">
                             <div class="space-y-2">
                                 <h3 class="text-lg font-medium text-gray-900">Mehdi BENBABA</h3>
-                                <p class="text-indigo-600">IT manager</p>
+                                <p class="text-indigo-600">Responsable informatique</p>
                             </div>
                         </div>
                     </div>
@@ -143,35 +143,35 @@
         <div class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Our Impact</h2>
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Notre impact</h2>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
-                        Together with our volunteers and organizations, we've made a significant difference.
+                        Avec nos bénévoles et organisations, nous avons fait une différence significative.
                     </p>
                 </div>
     
                 <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-4">
                     <!-- Stat 1 -->
                     <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                        <div class="text-4xl font-extrabold text-indigo-600">5,000+</div>
-                        <p class="mt-2 text-lg font-medium text-gray-900">Volunteers</p>
+                        <div class="text-4xl font-extrabold text-indigo-600">350+</div>
+                        <p class="mt-2 text-lg font-medium text-gray-900">Bénévoles</p>
                     </div>
     
                     <!-- Stat 2 -->
                     <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                        <div class="text-4xl font-extrabold text-indigo-600">250+</div>
-                        <p class="mt-2 text-lg font-medium text-gray-900">Organizations</p>
+                        <div class="text-4xl font-extrabold text-indigo-600">20+</div>
+                        <p class="mt-2 text-lg font-medium text-gray-900">Organisations</p>
                     </div>
     
                     <!-- Stat 3 -->
                     <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                        <div class="text-4xl font-extrabold text-indigo-600">1,200+</div>
-                        <p class="mt-2 text-lg font-medium text-gray-900">Opportunities</p>
+                        <div class="text-4xl font-extrabold text-indigo-600">200+</div>
+                        <p class="mt-2 text-lg font-medium text-gray-900">Opportunités</p>
                     </div>
     
                     <!-- Stat 4 -->
                     <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                        <div class="text-4xl font-extrabold text-indigo-600">50,000+</div>
-                        <p class="mt-2 text-lg font-medium text-gray-900">Volunteer Hours</p>
+                        <div class="text-4xl font-extrabold text-indigo-600">6000+</div>
+                        <p class="mt-2 text-lg font-medium text-gray-900">Heures de bénévolat</p>
                     </div>
                 </div>
             </div>
@@ -181,9 +181,9 @@
         <div class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Our Partners</h2>
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Nos partenaires</h2>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
-                        We're proud to work with these organizations to create positive change.
+                        Nous sommes fiers de travailler avec ces organisations pour créer un changement positif.
                     </p>
                 </div>
     
@@ -218,17 +218,17 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-                        Ready to make a difference?
+                        Prêt à faire une différence?
                     </h2>
                     <p class="mt-4 text-xl text-blue-100">
-                        Join our community today and start finding volunteer opportunities that match your passions.
+                        Rejoignez notre communauté aujourd'hui et commencez à trouver des opportunités de bénévolat qui correspondent à vos passions.
                     </p>
                     <div class="mt-8 flex justify-center space-x-4">
                         <a href="{{ route('register.form', ['role' => 'volunteer']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-blue-700 bg-white hover:bg-blue-50">
-                            Join as Volunteer
+                            Rejoindre comme bénévole
                         </a>
                         <a href="{{ route('register.form', ['role' => 'organization']) }}" class="inline-flex items-center px-6 py-3 border border-white text-base font-medium rounded-md shadow-sm text-white bg-transparent hover:bg-blue-700">
-                            Register Organization
+                            Organisation de registres
                         </a>
                     </div>
                 </div>
