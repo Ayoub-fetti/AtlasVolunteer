@@ -40,15 +40,16 @@
         
         <!-- Profile Info -->
         <div class="mt-20 mb-8 flex flex-col md:flex-row md:items-end justify-between">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-900">{{ optional($user)->name }}</h1>
-                <p class="text-gray-600 mt-1">{{ optional($volunteer)->function ?? 'Volunteer' }}</p>
+            <div class="ml-12">
+                <h1 class="text-3xl font-bold text-gray-900">{{ ucfirst(optional($user)->name) }}</h1>
+                <p class="text-gray-600 mt-1">" {{ optional($volunteer)->function ?? 'Volunteer' }} "</p>
+                <h1 class="text-gray-900 mt-1 text-2xl"> Total d'heures de bénévolat :  <span class="font-bold">{{($volunteer)->total_hours}}</span></h1>
             </div>
-            <button id="edit-profile-btn" class="mt-4 md:mt-0 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center">
+            <button id="edit-profile-btn" class="mt-4 md:mt-0 px-4 py-2 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-4xl hover:bg-indigo-700 transition flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
-                Edit Profile
+                Modifier le profil
             </button>
         </div>
         
