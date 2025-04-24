@@ -43,10 +43,6 @@ class Opportunity extends Model
     {
         return $this->belongsToMany(Volunteer::class, 'applications');
     }
-    public function favoritedByUsers()
-    {
-        return $this->belongsToMany(User::class, 'favorites');
-    }
     public function categories()
     {
         return $this->belongsTo(Category::class,);

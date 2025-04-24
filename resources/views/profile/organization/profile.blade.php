@@ -1,11 +1,20 @@
 <x-app>
-    @if (session('success'))
-        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-5" role="alert">
-            <p>{{ session('success') }}</p>
+    
+    <div class="container mx-auto mt-10 px-4 sm:px-6 lg:px-8 mb-16">
+        @if (session('success'))
+        <div class="bg-green-50 border-l-4 border-green-500 rounded-md p-4 mb-6 shadow-sm" role="alert">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-green-800">{{ session('success') }}</p>
+                </div>
+            </div>
         </div>
     @endif
-
-    <div class="container mx-auto mt-10 px-4 sm:px-6 lg:px-8 mb-16">
         <!-- Profile Header -->
         <div class="relative">
             <!-- Cover Image -->

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleAuthController;
@@ -84,7 +85,18 @@ Route::middleware(['auth','verified','role:volunteer'])->group(function () {
 
 
 Route::middleware(['auth','role:admin'])->group(function () {
-    
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    // users
+    Route::get('/utilisateurs', [AdminController::class, 'listUsers'])->name('admin.users');
+    Route::delete('/utilisateurs/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    // donations
+    Route::get('/dons', [AdminController::class, 'listDonation'])->name('admin.donations');
+    Route::delete('/admin/donations/{id}', [AdminController::class, 'deleteDonation'])->name('admin.donations.delete');
+    // opportunitées
+    Route::get('/opportunités', [AdminController::class, 'listOpportunities'])->name('admin.opportunities');
+    Route::delete('/admin/opportunities/{id}', [AdminController::class, 'deleteOpportunity'])->name('admin.opportunities.delete');
+
+
 });
 
 
@@ -101,6 +113,7 @@ Route::middleware(['auth','role:organization'])->group(function () {
     Route::put('/opportunity/management/{id}',[OpporunityController::class, 'management'])->name('opportunity.management');
     
 });
+
 
 
 
