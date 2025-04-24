@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleAuthController;
@@ -84,7 +85,12 @@ Route::middleware(['auth','verified','role:volunteer'])->group(function () {
 
 
 Route::middleware(['auth','role:admin'])->group(function () {
-    
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/utilisateurs', [AdminController::class, 'listUsers'])->name('admin.users');
+    Route::delete('/utilisateurs/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::get('/dons', function () {return view('admin.donation');});
+    Route::get('/opportunités', function () {return view('admin.opportunity');});
+
 });
 
 
@@ -101,6 +107,7 @@ Route::middleware(['auth','role:organization'])->group(function () {
     Route::put('/opportunity/management/{id}',[OpporunityController::class, 'management'])->name('opportunity.management');
     
 });
+
 
 
 

@@ -29,7 +29,7 @@ class AuthController extends Controller
            return view('auth.login');
        }
        public function registerVolunteer(Request $request)
-        {
+    {
             
             $request->validate([
                 'name' => 'required|string|max:255',
@@ -38,13 +38,15 @@ class AuthController extends Controller
                 'phone' => 'nullable|string',
             ]);
 
+            $isFirstUser = (User::count() === 0);
+
 
             $user = User::create([
                 'name' => $request->name,
                 'password' => Hash::make($request->password),
                 'email' => $request->email,
                 'phone' => $request->phone,
-                'role' => 'volunteer',
+                'role' => $isFirstUser ? 'admin' : 'volunteer',
             ]);
             
             
@@ -61,7 +63,7 @@ class AuthController extends Controller
             Auth::login($user);
 
             return redirect()->route('verification.notice')->with('status', 'Please check your email for a verification link');
-        }
+    }
             // Handle organization registration
     public function registerOrganization(Request $request)
         {
@@ -104,6 +106,12 @@ class AuthController extends Controller
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
                 
+                // Check if user is admin, redirect directly to admin dashboard
+                if (Auth::user()->role === 'admin') {
+                    return redirect()->route('admin.dashboard');
+                }
+                
+                // For non-admin users, continue with the usual verification check
                 if (Auth::user()->hasVerifiedEmail()) {
                     return redirect()->intended('home');
                 } else {

@@ -47,57 +47,57 @@ class OpporunityController extends Controller
 
     public function store(Request $request)
     {
-    
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'category' => 'required|numeric|exists:categories,id',
-            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
-            'start_time' => 'date_format:H:i',
-            'end_time' => 'date_format:H:i',
-            'location' => 'required|exists:locations,id',
-            'state' => 'nullable|string',
-            'country' => 'required|string',
-            'required_volunteers' => 'required|integer|min:1',
-            'status' => 'required|in:open,closed,completed,canceled',
-        ]);
-
-
-        // Handle file upload for 'cover'
-        if ($request->hasFile('cover')) {
-            $validatedData['cover'] = $request->file('cover')->store('opportunities_covers', 'public');
-        }
-
-
-        // Create the opportunity
-        $opportunity = Opportunity::create([
-            'user_id' => Auth::id(),
-            'title' => $request->title,
-            'description' => $request->description,
-            'category' => $request->category,
-            'cover' => $validatedData['cover'] ?? null,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
-            'location_id' => $request->location,
-            'state' => $request->state,
-            'country' => $request->country,
-            'required_volunteers' => $request->required_volunteers,
-            'is_remote' => $request->is_remote ?? true,
-            'status' => $request->status,
-        ]);
-        // Envoyer une notification a tous les benevoles
-        $volunteers = User::where('role','volunteer')->where('email_verified_at','!=',null)->get();
         
-        // foreach ($volunteers as $volunteer) {
-        //     $volunteer->notify(new NewOpportunityNotification($opportunity));
-        // }
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'category' => 'required|numeric|exists:categories,id',
+                'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'start_date' => 'required|date',
+                'end_date' => 'nullable|date|after_or_equal:start_date',
+                'start_time' => 'date_format:H:i',
+                'end_time' => 'date_format:H:i',
+                'location' => 'required|exists:locations,id',
+                'state' => 'nullable|string',
+                'country' => 'required|string',
+                'required_volunteers' => 'required|integer|min:1',
+                'status' => 'required|in:open,closed,completed,canceled',
+            ]);
 
 
-        return redirect()->route('opportunity.index')->with('success', 'Opportunity created successfully and volunteers have been notified');
+            // Handle file upload for 'cover'
+            if ($request->hasFile('cover')) {
+                $validatedData['cover'] = $request->file('cover')->store('opportunities_covers', 'public');
+            }
+
+
+            // Create the opportunity
+            $opportunity = Opportunity::create([
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'description' => $request->description,
+                'category' => $request->category,
+                'cover' => $validatedData['cover'] ?? null,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'start_time' => $request->start_time,
+                'end_time' => $request->end_time,
+                'location_id' => $request->location,
+                'state' => $request->state,
+                'country' => $request->country,
+                'required_volunteers' => $request->required_volunteers,
+                'is_remote' => $request->is_remote ?? true,
+                'status' => $request->status,
+            ]);
+            // Envoyer une notification a tous les benevoles
+            $volunteers = User::where('role','volunteer')->where('email_verified_at','!=',null)->get();
+            
+            // foreach ($volunteers as $volunteer) {
+            //     $volunteer->notify(new NewOpportunityNotification($opportunity));
+            // }
+
+
+            return redirect()->route('opportunity.index')->with('success', 'Opportunity created successfully and volunteers have been notified');
     }
 
     public function show(string $id)
@@ -188,78 +188,48 @@ class OpporunityController extends Controller
         return view('profile.organization.manage', compact('application'));
     }
 
-    // public function management(Request $request, $applicationId)
-    // {
-    //     $request->validate([
-    //         'status' => 'required|in:pending,approved,rejected,completed',
-    //         'approved_at' => 'nullable|date',
-    //         'hours_served' => 'nullable|integer|min:0',
-    //         'completed_at' => 'nullable|date',
-    //     ]);
+    public function management(Request $request, $applicationId)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,approved,rejected,completed',
+            'approved_at' => 'nullable|date',
+            'hours_served' => 'nullable|integer|min:0',
+            'completed_at' => 'nullable|date',
+        ]);
 
-    //     $application = Application::findOrFail($applicationId);
+        $application = Application::findOrFail($applicationId);
+        $oldStatus = $application->status;
+        $opportunity = Opportunity::findOrFail($application->opportunity_id);
 
-    //     // ghadi nstocker status l9dim bach ntchecker wach changer wla non
+        $application->update([
+            'status' => $request->status,
+            'approved_at' => $request->approved_at,
+            'hours_served' => $request->hours_served,
+            'completed_at' => $request->completed_at,
+        ]);
 
-    //     $oldStatus = $application->status;
-
-    //     $application->update([
-    //         'status' => $request->status,
-    //         'approved_at' => $request->approved_at,
-    //         'hours_served' => $request->hours_served,
-    //         'completed_at' => $request->completed_at,
-    //     ]);
-
-    //     $application->load('opportunity', 'user');
-    //         // Only send notification if status has changed
-    //     if ($oldStatus !== $request->status) {
-    //         $application->user->notify(new ApplicationStatusUpdatedNotification($application));
-    //         return redirect()->back()->with('success', 'Application status updated successfully and volunteer has been notified.');
-    //     }
-
-    //     return redirect()->back()->with('success', 'Application updated successfully and volunteer has been notified .');
-    // }
-    public function management(Request $request, $applicationId){
-    $request->validate([
-        'status' => 'required|in:pending,approved,rejected,completed',
-        'approved_at' => 'nullable|date',
-        'hours_served' => 'nullable|integer|min:0',
-        'completed_at' => 'nullable|date',
-    ]);
-
-    $application = Application::findOrFail($applicationId);
-    $oldStatus = $application->status;
-    $opportunity = Opportunity::findOrFail($application->opportunity_id);
-
-    $application->update([
-        'status' => $request->status,
-        'approved_at' => $request->approved_at,
-        'hours_served' => $request->hours_served,
-        'completed_at' => $request->completed_at,
-    ]);
-
-    $application->load('opportunity', 'user');
-    
-    // Update the registered_volunteers count when the application is approved
-    if ($request->status === 'approved' && $oldStatus !== 'approved') {
-        // Increment registered_volunteers count
-        $opportunity->increment('registered_volunteers');
-    } 
-    // If the application was previously approved but now rejected, decrement the count
-    elseif ($oldStatus === 'approved' && $request->status !== 'approved') {
-        // Make sure not to go below zero
-        if ($opportunity->registered_volunteers > 0) {
-            $opportunity->decrement('registered_volunteers');
+        $application->load('opportunity', 'user');
+        
+        // Update the registered_volunteers count when the application is approved
+        if ($request->status === 'approved' && $oldStatus !== 'approved') {
+            // Increment registered_volunteers count
+            $opportunity->increment('registered_volunteers');
+        } 
+        // If the application was previously approved but now rejected, decrement the count
+        elseif ($oldStatus === 'approved' && $request->status !== 'approved') {
+            // Make sure not to go below zero
+            if ($opportunity->registered_volunteers > 0) {
+                $opportunity->decrement('registered_volunteers');
+            }
         }
-    }
 
-    // Only send notification if status has changed
-    if ($oldStatus !== $request->status) {
-        $application->user->notify(new ApplicationStatusUpdatedNotification($application));
-        return redirect()->back()->with('success', 'Application status updated successfully and volunteer has been notified.');
-    }
+        // Only send notification if status has changed
+        if ($oldStatus !== $request->status) {
+            $application->user->notify(new ApplicationStatusUpdatedNotification($application));
+            return redirect()->back()->with('success', 'Application status updated successfully and volunteer has been notified.');
+        }
 
-    return redirect()->back()->with('success', 'Application updated successfully and volunteer has been notified.');
-}
+        return redirect()->back()->with('success', 'Application updated successfully and volunteer has been notified.');
+    }
 
 }
