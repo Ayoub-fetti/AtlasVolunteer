@@ -23,6 +23,26 @@ class AdminController extends Controller
         $users = User::with('volunteer','organizations')->paginate(15);
         return view('admin.users', compact('users'));
     }
+    public function listDonation() {
+        $donations = Donation::with('user','location')->paginate(15);
+        return view('admin.donation', compact('donations'));
+    }
+    public function listOpportunities(){
+        $opportunities = Opportunity::with('user','location')->paginate(15);
+        return view('admin.opportunity', compact('opportunities'));
+    }
+
+    public function deleteDonation($id) {
+        $donation = Donation::findOrFail($id);
+        $donation->delete();
+
+        return view('admin.donation')->with('success', "Donation supprimée avec succès.");
+    }
+    public function deleteOpportunity($id) {
+        $opportunity = Opportunity::findOrFail($id);
+        $opportunity->delete();
+        return view('admin.opportunity')->with('success', "Oppotunité supprimée avec succès.");
+    }
 
     public function deleteUser($id) {
         $user = User::findOrFail($id);

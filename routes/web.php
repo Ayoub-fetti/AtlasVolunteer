@@ -86,10 +86,16 @@ Route::middleware(['auth','verified','role:volunteer'])->group(function () {
 
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    // users
     Route::get('/utilisateurs', [AdminController::class, 'listUsers'])->name('admin.users');
     Route::delete('/utilisateurs/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
-    Route::get('/dons', function () {return view('admin.donation');});
-    Route::get('/opportunités', function () {return view('admin.opportunity');});
+    // donations
+    Route::get('/dons', [AdminController::class, 'listDonation'])->name('admin.donations');
+    Route::delete('/admin/donations/{id}', [AdminController::class, 'deleteDonation'])->name('admin.donations.delete');
+    // opportunitées
+    Route::get('/opportunités', [AdminController::class, 'listOpportunities'])->name('admin.opportunities');
+    Route::delete('/admin/opportunities/{id}', [AdminController::class, 'deleteOpportunity'])->name('admin.opportunities.delete');
+
 
 });
 

@@ -14,7 +14,7 @@
                 </div>
 
                 <!-- Burger Button (Visible sur petit écran) -->
-                <button id="adminBurgerBtn" class="md:hidden text-white focus:outline-none">
+                <button id="adminBurgerBtn" class="md:hidden text-gray-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -39,14 +39,13 @@
 
             <!-- Mobile Menu -->
             <div id="adminMobileMenu" class="md:hidden hidden flex-col space-y-4 py-4">
-                <a href="/admin/dashboard" class="block text-gray-300 hover:text-white">Tableau de bord</a>
-                <a href="/utilisateurs" class="block text-gray-300 hover:text-white">Utilisateurs</a>
-                <a href="/admin/opportunities" class="block text-gray-300 hover:text-white">Opportunités</a>
-                <a href="/admin/donations" class="block text-gray-300 hover:text-white">Donations</a>
-                <a href="/admin/settings" class="block text-gray-300 hover:text-white">Paramètres</a>
+                <a href="/admin/dashboard" class="block text-gray-600 hover:text-gray-400">Tableau de bord</a>
+                <a href="/utilisateurs" class="block text-gray-600 hover:text-gray-400">Utilisateurs</a>
+                <a href="/opportunités" class="block text-gray-600 hover:text-gray-400">Opportunités</a>
+                <a href="/dons" class="block text-gray-600 hover:text-gray-400">Donations</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="block text-left text-gray-300 hover:text-white w-full">Déconnexion</button>
+                    <button type="submit" class="block text-left text-gray-600 hover:text-white w-full">Déconnexion</button>
                 </form>
             </div>
         </div>

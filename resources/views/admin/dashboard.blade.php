@@ -9,7 +9,7 @@
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <!-- Welcome Section -->
         <div class="px-4 py-6 sm:px-0 mb-8">
-            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg shadow-lg overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-500 to-green-600 rounded-lg shadow-lg overflow-hidden">
                 <div class="px-6 py-8 md:p-10">
                     <h2 class="text-2xl font-bold text-white mb-2">Bienvenue sur le tableau de bord administrateur</h2>
                     <p class="text-blue-100">Gérer votre plateforme de volontariat et suivre son évolution.</p>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <a href="#" class="text-sm text-green-500 hover:underline">Voir toutes les opportunités →</a>
+                            <a href="/opportunités" class="text-sm text-green-500 hover:underline">Voir toutes les opportunités →</a>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <a href="#" class="text-sm text-purple-500 hover:underline">Voir toutes les donations →</a>
+                            <a href="/dons" class="text-sm text-purple-500 hover:underline">Voir toutes les donations →</a>
                         </div>
                     </div>
                 </div>
