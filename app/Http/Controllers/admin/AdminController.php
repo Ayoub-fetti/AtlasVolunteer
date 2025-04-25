@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Donation;
+use App\Models\Category;
 use App\Models\Opportunity;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -68,4 +69,26 @@ class AdminController extends Controller
         return redirect()->route('admin.users')->with('success', 'Utilisateur supprimer avec succes.');
 
     }
+    public function listCategories() {
+        $categories = Category::paginate(15);
+        return view('admin.category', compact('categories'));
+    }
+
+    public function addCategory(Request $request) {
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $category = Category::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('admin.categories')->with('success', 'vous avez ajouter une categorie avec succès.');
+    }
+    public function deleteCategory($id){
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->route('admin.categories')->with('success', 'Vous avez supprumer un categories avec succès.');
+    } 
 }

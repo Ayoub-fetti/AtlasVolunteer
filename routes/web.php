@@ -95,7 +95,14 @@ Route::middleware(['auth','role:admin'])->group(function () {
     // opportunitées
     Route::get('/opportunités', [AdminController::class, 'listOpportunities'])->name('admin.opportunities');
     Route::delete('/admin/opportunities/{id}', [AdminController::class, 'deleteOpportunity'])->name('admin.opportunities.delete');
-
+    // categories
+    Route::get('/categories', [AdminController::class, 'listCategories'])->name('admin.categories');
+    Route::post('/admin/add/category', [AdminController::class, 'addCategory'])->name('admin.add.category');
+    Route::delete('/admin/category/{id}', [AdminController::class, 'deleteCategory'])->name('admin.delete.category');
+    // location
+    Route::get('/locations', [AdminController::class, 'listLocations'])->name('admin.locations');
+    Route::post('/admin/add/location', [AdminController::class,'addLocation'])->name('admin.add.location');
+    Route::delete('/admin/location/{id}', [AdminController::class, 'deleteLocation'])->name('admin.delete.location');
 
 });
 

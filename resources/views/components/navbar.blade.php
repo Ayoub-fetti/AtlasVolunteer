@@ -26,6 +26,8 @@
                     <a href="/utilisateurs" class="{{ request()->is('utilisateurs') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Utilisateurs</a>
                     <a href="/opportunités" class="{{ request()->is('opportunités') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Opportunités</a>
                     <a href="/dons" class="{{ request()->is('dons') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Donations</a>
+                    <a href="/categories" class="{{ request()->is('categories') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Catégories</a>
+                    <a href="#" class="{{ request()->is('dons') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Emplacements</a>
                 </div>
 
                 <!-- Auth Links (Desktop) -->
