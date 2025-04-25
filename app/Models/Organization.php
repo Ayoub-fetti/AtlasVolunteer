@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Opportunity;
+use App\Models\Donation;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,5 +43,9 @@ class Organization extends Model
     public function opportunities()
     {
         return $this->hasMany(Opportunity::class);
+    }
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
     }
 }

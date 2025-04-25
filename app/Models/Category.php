@@ -11,12 +11,9 @@ class Category extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'slug',
-        'description',
-        'icon',
     ];
     public function opportunities()
     {
-        return $this->belongsToMany(Opportunity::class);
+        return $this->hasMany(Opportunity::class);
     }
 }

@@ -11,13 +11,10 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->text('description')->nullable();
-            $table->string('icon')->nullable();
             $table->timestamps();
         });
         
-        // Pivot table for opportunities and categories (many-to-many)
+        // Pivot table 
         Schema::create('category_opportunity', function (Blueprint $table) {
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('opportunity_id')->constrained()->onDelete('cascade');

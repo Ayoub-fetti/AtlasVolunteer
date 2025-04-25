@@ -5,10 +5,12 @@ use App\Models\Organization;
 use App\Models\Volunteer;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Location;
+use App\Models\Application;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Notifications\Notifiable;
 
 class Opportunity extends Model
 {
@@ -24,8 +26,7 @@ class Opportunity extends Model
         'end_date',
         'start_time',
         'end_time',
-        'location',
-        'city',
+        'location_id',
         'state',
         'country',
         'required_volunteers',
@@ -33,21 +34,28 @@ class Opportunity extends Model
         'is_remote',
         'status',
     ];
+
     public function organization()
     {
-        return $this->belongsTo(Organization::class);
+        return $this->hasOneThrough(Organization::class,User::class,'id','user_id','user_id');
     }
     public function volunteers()
     {
         return $this->belongsToMany(Volunteer::class, 'applications');
     }
-    public function favoritedByUsers()
-    {
-        return $this->belongsToMany(User::class, 'favorites');
-    }
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class,);
 
+    }
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+    public function applications(){
+        return $this->hasMany(Application::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

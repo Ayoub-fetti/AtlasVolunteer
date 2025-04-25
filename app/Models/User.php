@@ -7,13 +7,15 @@ use App\Models\Organization;
 use App\Models\Review;
 use App\Models\Opportunity;
 use App\Models\Donation;
-
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Application;
+use App\Models\Conversation;
+use App\Notifications\CustomVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -61,5 +63,28 @@ class User extends Authenticatable
     public function donations()
     {
         return $this->hasMany(Donation::class);
+    }
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+    public function opportunities()
+    {
+        return $this->hasMany(Opportunity::class);
+    }
+    public function conversations()
+    {
+        return $this->hasMany(Conversation::class, 'user_id');
+    }
+    public function receivedConversations()
+    {
+        return $this->hasMany(Conversation::class, 'receiver_id');
+    }
+    public function hasRole($role){
+        return $this->role == $role;
+    }
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomVerifyEmail);
     }
 }

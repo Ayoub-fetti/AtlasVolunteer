@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ config('app.name', 'Atlas Volunteer') }}</title>
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{{ asset('images/icon.png') }}">
+        <!-- Pour une meilleure compatibilité entre navigateurs -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/icon.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/icon.png') }}">
+        {{-- <link rel="manifest" href="{{ asset('site.webmanifest') }}"> --}}
         {{ $head ?? '' }}
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-
+        @vite('resources/css/app.css')
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        {{ $slot }}
+    <body class="font-sans antialiased dark:bg-black dark:text-white/50 min-h-screen flex flex-col">
+        <div class="relative z-20">
+            <x-navbar />
+        </div>
+        <main class="flex-grow">
+            {{ $slot }}
+        </main>
     </body>
+    <script>
+        function previewImage(input) {
+    const previewContainer = document.getElementById('image-preview-container');
+    const preview = document.getElementById('image-preview');
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            previewContainer.classList.remove('hidden');
+        };
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+    </script>
 </html>

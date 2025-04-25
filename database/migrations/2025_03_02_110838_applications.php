@@ -19,7 +19,6 @@ return new class extends Migration
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
             
-            // Prevent duplicate applications
             $table->unique(['user_id', 'opportunity_id']);
         });
     }
