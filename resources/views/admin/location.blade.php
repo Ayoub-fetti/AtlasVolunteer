@@ -20,6 +20,8 @@
             </div>
         @endif
 
+
+        
         <!-- Section d'ajout de catégorie -->
         <div class="mb-8 bg-white overflow-hidden shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
@@ -44,6 +46,9 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="flex justify-center">
+            <input type="text" id="searchLocations" placeholder="Rechercher des emplacements..." class="w-full p-2 mb-4 border rounded-4xl">
         </div>
 
         <!-- Liste des catégories -->

@@ -24,21 +24,135 @@
             {{ $slot }}
         </main>
     </body>
+
+    {{-- fonction update de l'image  --}}
     <script>
         function previewImage(input) {
-    const previewContainer = document.getElementById('image-preview-container');
-    const preview = document.getElementById('image-preview');
-    
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
+            const previewContainer = document.getElementById('image-preview-container');
+            const preview = document.getElementById('image-preview');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                };
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+    {{-- fonction de search pour location --}}
+    <script>
+        document.getElementById('searchLocations').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('tbody tr');
+            
+            tableRows.forEach(row => {
+                const locationId = row.querySelector('td:first-child').textContent.toLowerCase();
+                const locationName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
         
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-            previewContainer.classList.remove('hidden');
-        };
-        
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+                if (locationId.includes(searchValue) || locationName.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    {{-- fonction pour search des categories --}}
+    <script>
+        document.getElementById('searchCategories').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('tbody tr');
+            
+            tableRows.forEach(row => {
+                const CategoryId = row.querySelector('td:first-child').textContent.toLowerCase();
+                const CategoryName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                
+                if (CategoryId.includes(searchValue) || CategoryName.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    {{-- fonction de recherche des donations pour l'admin --}}
+    <script>
+        document.getElementById('searchDonations').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('tbody tr');
+            
+            tableRows.forEach(row => {
+                // Récupérer toutes les cellules de texte de la ligne
+                const cells = row.querySelectorAll('td');
+                let rowContainsSearchValue = false;
+                
+                // Vérifier chaque cellule pour le texte recherché
+                cells.forEach(cell => {
+                    const cellText = cell.textContent.toLowerCase();
+                    if (cellText.includes(searchValue)) {
+                        rowContainsSearchValue = true;
+                    }
+                });
+                
+                // Afficher ou masquer la ligne selon le résultat de la recherche
+                if (rowContainsSearchValue) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    {{-- fonction pour rechercher des opportunites pour l'admin --}}
+    <script>
+        document.getElementById('searchOpportunities').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('tbody tr');
+            
+            tableRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let rowContainsSearchValue = false;
+                cells.forEach(cell => {
+                    const cellText = cell.textContent.toLowerCase();
+                    if (cellText.includes(searchValue)) {
+                        rowContainsSearchValue = true;
+                    }
+                });
+                if (rowContainsSearchValue) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    {{-- fonction pour rechercher des utilisateur pour l'admin --}}
+    <script>
+        document.getElementById('searchUsers').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('tbody tr');
+            
+            tableRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let rowContainsSearchValue = false;
+                cells.forEach(cell => {
+                    const cellText = cell.textContent.toLowerCase();
+                    if (cellText.includes(searchValue)) {
+                        rowContainsSearchValue = true;
+                    }
+                });
+                if (rowContainsSearchValue) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
     </script>
 </html>

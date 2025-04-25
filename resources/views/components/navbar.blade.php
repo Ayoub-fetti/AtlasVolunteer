@@ -24,10 +24,10 @@
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="/admin/dashboard" class="{{ request()->is('admin/dashboard') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Tableau de bord</a>
                     <a href="/utilisateurs" class="{{ request()->is('utilisateurs') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Utilisateurs</a>
+                    <a href="/locations" class="{{ request()->is('locations') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Emplacements</a>
+                    <a href="/categories" class="{{ request()->is('categories') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Catégories</a>
                     <a href="/opportunités" class="{{ request()->is('opportunités') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Opportunités</a>
                     <a href="/dons" class="{{ request()->is('dons') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Donations</a>
-                    <a href="/categories" class="{{ request()->is('categories') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Catégories</a>
-                    <a href="/locations" class="{{ request()->is('locations') ? 'text-green-400 border-b-2 border-green-400' : 'text-gray-800 hover:text-gray-400' }} transition">Emplacements</a>
                 </div>
 
                 <!-- Auth Links (Desktop) -->
@@ -43,10 +43,10 @@
             <div id="adminMobileMenu" class="md:hidden hidden flex-col space-y-4 py-4">
                 <a href="/admin/dashboard" class="block text-gray-600 hover:text-gray-400">Tableau de bord</a>
                 <a href="/utilisateurs" class="block text-gray-600 hover:text-gray-400">Utilisateurs</a>
-                <a href="/opportunités" class="block text-gray-600 hover:text-gray-400">Opportunités</a>
-                <a href="/dons" class="block text-gray-600 hover:text-gray-400">Donations</a>
                 <a href="/categories" class="block text-gray-600 hover:text-gray-400">Catégories</a>
                 <a href="/locations" class="block text-gray-600 hover:text-gray-400">Emplacements</a>
+                <a href="/opportunités" class="block text-gray-600 hover:text-gray-400">Opportunités</a>
+                <a href="/dons" class="block text-gray-600 hover:text-gray-400">Donations</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="block text-left text-gray-600 hover:text-white w-full">Déconnexion</button>
