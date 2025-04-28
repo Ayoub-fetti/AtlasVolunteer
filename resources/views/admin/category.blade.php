@@ -20,6 +20,7 @@
             </div>
         @endif
 
+
         <!-- Section d'ajout de catégorie -->
         <div class="mb-8 bg-white overflow-hidden shadow-sm rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
@@ -30,7 +31,7 @@
                     <div class="flex-grow">
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom de la catégorie</label>
                         <input type="text" name="name" id="name" required
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            class="block w-full border-gray-300 rounded-md p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             placeholder="Entrez le nom de la catégorie">
                         @error('name')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -44,6 +45,10 @@
                     </div>
                 </form>
             </div>
+        </div>
+        
+        <div class="flex justify-center">
+            <input type="text" id="searchCategories" placeholder="Rechercher des categories..." class="w-full p-2 mb-4 border rounded-4xl">
         </div>
 
         <!-- Liste des catégories -->
@@ -70,9 +75,9 @@
                                             <form action="{{ route('admin.delete.category', $category->id) }}" method="POST" class="inline-block">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:text-red-900"
+                                                <button type="submit" class="text-red-600 hover:text-red-900 ml-6"
                                                     onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie? Cette action est irréversible.')">
-                                                    Supprimer
+                                                    <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                         </td>

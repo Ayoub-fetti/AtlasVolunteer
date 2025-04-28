@@ -3,6 +3,9 @@
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold text-gray-900">Gestion des utilisateurs</h1>
         </div>
+        <div class="flex justify-center">
+            <input type="text" id="searchUsers" placeholder="Rechercher des utilisateur..." class="w-auto p-2 mb-4 border rounded-4xl">
+        </div>
     </div>
 
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">

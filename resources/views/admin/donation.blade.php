@@ -1,5 +1,9 @@
 <x-app>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex justify-center">
+            <input type="text" id="searchDonations" placeholder="Rechercher des donations..." class="w-auto p-2 mb-4 border rounded-4xl">
+        </div>
+
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
             <!-- Header with donation title -->
             <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between items-center">

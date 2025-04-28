@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Donation;
 use App\Models\Category;
+use App\Models\Location;
 use App\Models\Opportunity;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,6 +32,14 @@ class AdminController extends Controller
     public function listOpportunities(){
         $opportunities = Opportunity::with('user','location')->paginate(15);
         return view('admin.opportunity', compact('opportunities'));
+    }
+    public function listCategories() {
+        $categories = Category::paginate(15);
+        return view('admin.category', compact('categories'));
+    }
+    public function listLocations(){
+        $locations = Location::paginate(15);
+        return view('admin.location', compact('locations'));
     }
 
     public function deleteDonation($id) {
@@ -69,10 +78,17 @@ class AdminController extends Controller
         return redirect()->route('admin.users')->with('success', 'Utilisateur supprimer avec succes.');
 
     }
-    public function listCategories() {
-        $categories = Category::paginate(15);
-        return view('admin.category', compact('categories'));
+    public function deleteCategory($id){
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->route('admin.categories')->with('success', 'Vous avez supprumer une categories avec succès.');
+    } 
+    public function deleteLocation($id){
+        $locations = Location::findOrFail($id);
+        $locations->delete();
+        return redirect()->route('admin.locations')->with('success', 'Vous avez supprumer un emplacement avec succès.');
     }
+
 
     public function addCategory(Request $request) {
         
@@ -86,9 +102,17 @@ class AdminController extends Controller
 
         return redirect()->route('admin.categories')->with('success', 'vous avez ajouter une categorie avec succès.');
     }
-    public function deleteCategory($id){
-        $category = Category::findOrFail($id);
-        $category->delete();
-        return redirect()->route('admin.categories')->with('success', 'Vous avez supprumer un categories avec succès.');
-    } 
+    public function addLocation(Request $request) {
+        
+        $request->validate([
+            'place_name' => 'required|string|max:255',
+        ]);
+
+        $location = Location::create([
+            'place_name' => $request->place_name,
+        ]);
+
+        return redirect()->route('admin.locations')->with('success', 'vous avez ajouter un emplacement avec succès.');
+    }
+
 }
