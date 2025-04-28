@@ -37,7 +37,8 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($donations as $donation)
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 
+                        @if(Auth::id() === $donation->user_id) border-l-4 border-green-500 @endif">
                         <div class="h-48 overflow-hidden">
                             @if($donation->image)
                                 <img 
@@ -89,7 +90,7 @@
                                 </a>
                                 
                                 @auth
-                                    @if($donation->status === 'available')
+                                    @if($donation->status === 'available' && Auth::id() !== $donation->user_id)
                                         <form action="{{ route('donations.apply', $donation->id) }}" method="POST" class="sm:ml-auto">
                                             @csrf
                                             <button 
