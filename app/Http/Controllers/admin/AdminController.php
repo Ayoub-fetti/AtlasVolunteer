@@ -102,6 +102,16 @@ class AdminController extends Controller
 
         return redirect()->route('admin.categories')->with('success', 'vous avez ajouter une categorie avec succès.');
     }
+    public function updateCategory(Request $request, $id) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $category = Category::findOrFail($id);
+        $category->update([
+            'name' => $request->name
+        ]);
+        return redirect()->route('admin.categories')->with('success', 'Vous avez modifié  une categorie avec succès.');
+    }
     public function addLocation(Request $request) {
         
         $request->validate([
@@ -113,6 +123,16 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('admin.locations')->with('success', 'vous avez ajouter un emplacement avec succès.');
+    }
+    public function updateLocation(Request $request, $id) {
+        $request->validate([
+            'place_name' => 'required|string|max:255',
+        ]);
+        $location = Location::findOrFail($id);
+        $location->update([
+            'place_name' => $request->place_name,
+        ]);
+        return redirect()->route('admin.locations')->with('sucess', 'Vous avez modifié un emplacement avec succès');
     }
 
 }

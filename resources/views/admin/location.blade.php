@@ -9,14 +9,32 @@
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <!-- Messages de notification -->
         @if (session('success'))
-            <div class="mb-4 px-4 py-3 bg-green-100 border border-green-400 text-green-800 rounded relative" role="alert">
-                <span class="block sm:inline">{{ session('success') }}</span>
+            <div class="bg-green-50 border-l-4 border-green-500 rounded-md p-4 mb-6 shadow-sm" role="alert">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-green-800">{{ session('success') }}</p>
+                    </div>
+                </div>
             </div>
         @endif
-        
+
         @if (session('error'))
-            <div class="mb-4 px-4 py-3 bg-red-100 border border-red-400 text-red-800 rounded relative" role="alert">
-                <span class="block sm:inline">{{ session('error') }}</span>
+            <div class="bg-red-50 border-l-4 border-red-500 rounded-md p-4 mb-6 shadow-sm" role="alert">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-red-800">{{ session('error') }}</p>
+                    </div>
+                </div>
             </div>
         @endif
 
@@ -72,6 +90,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $location->id }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $location->place_name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <!-- Formulaire de suppression -->
                                             <form action="{{ route('admin.delete.location', $location->id) }}" method="POST" class="inline-block">
                                                 @csrf
                                                 @method('DELETE')
@@ -79,6 +98,25 @@
                                                     onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet emplacement? Cette action est irréversible.')">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
+                                            </form>
+
+                                            <!-- Bouton pour afficher le formulaire de modification -->
+                                            <button onclick="toggleEditForm({{ $location->id }})" class="text-blue-600 hover:text-blue-900 ml-6">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+
+                                            <!-- Formulaire de modification caché -->
+                                            <form id="editForm-{{ $location->id }}" action="{{ route('admin.update.location', $location->id) }}" method="POST" class="mt-4 hidden">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="flex items-center space-x-4">
+                                                    <input type="text" name="place_name" value="{{ $location->place_name }}" required
+                                                        class="block w-full border-gray-300 rounded-md p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    <button type="submit" 
+                                                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                                        Mettre à jour
+                                                    </button>
+                                                </div>
                                             </form>
                                         </td>
                                     </tr>
@@ -104,3 +142,10 @@
         </div>
     </div>
 </x-app>
+
+<script>
+    function toggleEditForm(id) {
+        const form = document.getElementById(`editForm-${id}`);
+        form.classList.toggle('hidden');
+    }
+</script>
