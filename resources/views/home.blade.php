@@ -33,6 +33,9 @@
 
         <!-- Opportunities List -->
         @if(isset($opportunities) && $opportunities->count() > 0)
+        <div class="flex justify-center">
+            <input type="text" id="homeSearch" placeholder="Rechercher les opportunités disponible..." class="w-75 p-2 mb-4 border rounded-4xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
                 <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-4xl w-full mx-auto">
                 <div class="px-6 py-4 border-b border-gray-200">
                     <h2 class="text-2xl font-bold text-gray-800">Opportunités disponibles</h2>
@@ -111,3 +114,4 @@
 
     <x-footer />
 </x-app>
+

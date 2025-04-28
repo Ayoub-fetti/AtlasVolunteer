@@ -1,6 +1,9 @@
 <x-app>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Header -->
+        <div class="flex justify-center">
+            <input type="text" id="donationSearch" placeholder="Rechercher les opportunités disponible..." class="w-75 p-2 mb-4 border rounded-4xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
         <div class="sm:flex sm:items-center sm:justify-between mb-6">
             <h2 class="text-2xl font-bold text-gray-800 leading-tight">
                 Liste des Donations
@@ -27,12 +30,15 @@
                 @endauth
             </div>
         </div>
+        
 
         <!-- Donations grid -->
         @if(count($donations) > 0)
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($donations as $donation)
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 
+                        @if(Auth::id() === $donation->user_id) border-l-4 border-green-500 @endif">
                         <div class="h-48 overflow-hidden">
                             @if($donation->image)
                                 <img 
@@ -84,7 +90,7 @@
                                 </a>
                                 
                                 @auth
-                                    @if($donation->status === 'available')
+                                    @if($donation->status === 'available' && Auth::id() !== $donation->user_id)
                                         <form action="{{ route('donations.apply', $donation->id) }}" method="POST" class="sm:ml-auto">
                                             @csrf
                                             <button 
@@ -118,3 +124,4 @@
     </div>
     <x-footer />
 </x-app>
+
