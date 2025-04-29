@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class OrganizationProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $user = auth()->user();
@@ -22,12 +20,6 @@ class OrganizationProfileController extends Controller
         return view('profile.organization.profile',compact('user','organization','opportunities'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-    }
     public function store(Request $request)
     {
         $user = Auth::user();
@@ -86,36 +78,11 @@ class OrganizationProfileController extends Controller
                 );
                 return view('profile.organization.profile',compact('user','organization','opportunities'))->with('success', 'Profil mis à jour avec succès.');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
-    }
+        $organization = Organization::with('user')->findOrFail($id);
+        $opportunities = $organization->opportunities()->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('profile.organization.readonly', compact('organization', 'opportunities'));
     }
 }

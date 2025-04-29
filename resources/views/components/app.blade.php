@@ -160,14 +160,17 @@
     <script>
         document.getElementById('homeSearch').addEventListener('keyup', function() {
             const searchValue = this.value.toLowerCase();
-            const opportunityItems = document.querySelectorAll('ul.divide-y > li');
+            const donationCards = document.querySelectorAll('.grid > div.bg-white');
             
-            opportunityItems.forEach(item => {
-                const itemText = item.textContent.toLowerCase();
-                if (itemText.includes(searchValue)) {
-                    item.style.display = '';
+            donationCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p.text-gray-600').textContent.toLowerCase();
+                const location = card.querySelector('div.flex.items-center.text-gray-500 span')?.textContent.toLowerCase() || '';
+                
+                if (title.includes(searchValue) || description.includes(searchValue) || location.includes(searchValue)) {
+                    card.style.display = '';
                 } else {
-                    item.style.display = 'none';
+                    card.style.display = 'none';
                 }
             });
         });
