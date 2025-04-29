@@ -41,7 +41,11 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <p class="text-sm text-gray-500">Nom</p>
-                                <p class="font-medium">{{ $application->user->name }}</p>
+                                <p class="font-medium">
+                                    <a href="{{ route('user.profile', $application->user->id) }}" class="text-indigo-600 hover:text-indigo-800">
+                                        {{ ucfirst($application->user->name) }} (voir le profile)
+                                    </a>
+                                </p>
                             </div>
                             <div>
                                 <p class="text-sm text-gray-500">Email</p>

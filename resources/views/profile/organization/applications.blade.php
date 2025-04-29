@@ -47,7 +47,9 @@
                                                             alt="{{ $application->user->name }}">
                                                     </div>
                                                     <div class="ml-4">
-                                                        <div class="text-sm font-medium text-gray-900">{{ $application->user->name }}</div>
+                                                        <a href="{{ route('user.profile', $application->user->id) }}" class="text-indigo-600 hover:text-indigo-800">
+                                                            {{ ucfirst($application->user->name) }} (voir le profile)
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>

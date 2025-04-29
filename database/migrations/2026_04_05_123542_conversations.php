@@ -10,8 +10,8 @@ public function up()
 {
     Schema::create('conversations', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade');
+        $table->foreignId('user_id')->constrained();
+        $table->foreignId('receiver_id')->constrained('users');
         $table->timestamps();
     });
 }

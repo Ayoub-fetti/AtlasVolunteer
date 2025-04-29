@@ -1,3 +1,4 @@
+{{-- filepath: c:\laragon\www\Volunteer-Connect-Platform\resources\views\home.blade.php --}}
 <x-app>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Notifications -->
@@ -31,70 +32,53 @@
             </div>
         @endif
 
+        <!-- Title -->
+        
         <!-- Opportunities List -->
         @if(isset($opportunities) && $opportunities->count() > 0)
         <div class="flex justify-center">
             <input type="text" id="homeSearch" placeholder="Rechercher les opportunités disponible..." class="w-75 p-2 mb-4 border rounded-4xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
         </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-4xl w-full mx-auto">
-                <div class="px-6 py-4 border-b border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800">Opportunités disponibles</h2>
-                </div>
-                
-                <ul class="divide-y divide-gray-200">
-                    @foreach($opportunities as $opportunity)
-                        <li class="p-6 hover:bg-gray-50 transition duration-150">
-                            <div class="flex flex-col md:flex-row">
-                                <div class="md:w-32 flex-shrink-0 mb-4 md:mb-0">
-                                    <img 
-                                        src="{{ asset('storage/' . $opportunity->cover )}}" 
-                                        alt="{{ $opportunity->title }}" 
-                                        class="w-24 h-24 object-cover rounded-lg shadow-sm"
-                                    >
-                                </div>
-                                
-                                <div class="flex-1 md:ml-6">
-                                    <div class="flex items-center justify-between">
-                                        <h3 class="text-xl font-semibold text-gray-900">{{ $opportunity->title }}</h3>
-                                        <span class="px-3 py-1 text-xs font-medium rounded-full 
-                                            {{ $opportunity->status === 'Open' ? 'bg-green-100 text-green-800' : 
-                                              ($opportunity->status === 'Closed' ? 'bg-red-100 text-red-800' : 
-                                              'bg-yellow-100 text-yellow-800') }}">
-                                            {{ $opportunity->status }}
-                                        </span>
-                                    </div>
-                                    
-                                    <p class="mt-2 text-gray-600">{{ $opportunity->description }}</p>
-                                    
-                                    <div class="mt-4 flex flex-wrap gap-2">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-200 text-green-800">
-                                            @php
-                                                $category = App\Models\Category::find($opportunity->category);
-                                            @endphp
-                                            {{ $category ? $category->name : 'Uncategorized' }}
-                                        </span>
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                            <svg class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                            {{ $opportunity->location->place_name }}
-                                        </span>
-                                    </div>
-                                    
-                                    <div class="mt-5">
-                                        <a 
-                                            href="{{ route('opportunities.show', $opportunity->id) }}" 
-                                            class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-4xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                        >
-                                            Afficher les détails
-                                        </a>
-                                    </div>
-                                </div>
+        <h1 class="text-2xl font-bold text-gray-900 mb-6">Liste des opportunités</h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($opportunities as $opportunity)
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img 
+                            src="{{ asset('storage/' . $opportunity->cover )}}" 
+                            alt="{{ $opportunity->title }}" 
+                            class="w-full h-48 object-cover"
+                        >
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-900">{{ $opportunity->title }}</h3>
+                            <p class="mt-2 text-gray-600">{{ $opportunity->description }}</p>
+                            
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-200 text-green-800">
+                                    @php
+                                        $category = App\Models\Category::find($opportunity->category);
+                                    @endphp
+                                    {{ $category ? $category->name : 'Uncategorized' }}
+                                </span>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                    <svg class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    {{ $opportunity->location->place_name }}
+                                </span>
                             </div>
-                        </li>
-                    @endforeach
-                </ul>
+                            
+                            <div class="mt-5">
+                                <a 
+                                    href="{{ route('opportunities.show', $opportunity->id) }}" 
+                                    class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-4xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                >
+                                    Afficher les détails
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
 
             <!-- Pagination -->
@@ -111,7 +95,5 @@
             </div>
         @endif
     </div>
-
     <x-footer />
 </x-app>
-

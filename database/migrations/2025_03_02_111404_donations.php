@@ -16,9 +16,6 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->string('image')->nullable();
             $table->enum('status', ['available', 'reserved'])->default('available');
-            $table->foreignId('recipient_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->timestamp('reserved_at')->nullable();
-            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }

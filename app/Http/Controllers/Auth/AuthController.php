@@ -29,43 +29,43 @@ class AuthController extends Controller
            return view('auth.login');
        }
        public function registerVolunteer(Request $request)
-    {
-            
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8|confirmed',
-                'phone' => 'nullable|string',
-            ]);
+        {
+                
+                $request->validate([
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|string|email|max:255|unique:users',
+                    'password' => 'required|string|min:8|confirmed',
+                    'phone' => 'nullable|string',
+                ]);
 
-            $isFirstUser = (User::count() === 0);
+                $isFirstUser = (User::count() === 0);
 
 
-            $user = User::create([
-                'name' => $request->name,
-                'password' => Hash::make($request->password),
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'role' => $isFirstUser ? 'admin' : 'volunteer',
-            ]);
-            
-            
-            Volunteer::create([
-                'user_id' => $user->id,
-                'date_of_birth' => $request->date_of_birth,
-                'skills' => $request->skills,
-                'interests' => $request->interests,
-            ]);
-            
-            // send email verification notification
-            $user->sendEmailVerificationNotification();
+                $user = User::create([
+                    'name' => $request->name,
+                    'password' => Hash::make($request->password),
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'role' => $isFirstUser ? 'admin' : 'volunteer',
+                ]);
+                
+                
+                Volunteer::create([
+                    'user_id' => $user->id,
+                    'date_of_birth' => $request->date_of_birth,
+                    'skills' => $request->skills,
+                    'interests' => $request->interests,
+                ]);
+                
+                // send email verification notification
+                $user->sendEmailVerificationNotification();
 
-            Auth::login($user);
+                Auth::login($user);
 
-            return redirect()->route('verification.notice')->with('status', 'Please check your email for a verification link');
-    }
+                return redirect()->route('verification.notice')->with('status', 'Please check your email for a verification link');
+        }
             // Handle organization registration
-    public function registerOrganization(Request $request)
+        public function registerOrganization(Request $request)
         {
             $request->validate([
                 'organization_name' => 'required|string|max:255',

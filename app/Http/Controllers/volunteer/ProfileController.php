@@ -23,11 +23,6 @@ class ProfileController extends Controller
         return view('profile.volunteer.profile', compact('user','volunteer'));
     }
 
-    public function create()
-    {
-
-    }
-
 
     public function store(Request $request)
     {
@@ -83,35 +78,9 @@ class ProfileController extends Controller
         return view('profile.volunteer.profile', compact('user', 'volunteer'))->with('success', 'Profil mis à jour avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $user = User::with('volunteer', 'organizations')->findOrFail($id);
+        return view('profile.volunteer.readonly', compact('user'));
     }
 }
