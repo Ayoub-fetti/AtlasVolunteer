@@ -42,7 +42,7 @@ class Organization extends Model
     }
     public function opportunities()
     {
-        return $this->hasMany(Opportunity::class);
+        return $this->hasOneThrough(Opportunity::class,User::class,'id','user_id','user_id');
     }
     public function donations()
     {

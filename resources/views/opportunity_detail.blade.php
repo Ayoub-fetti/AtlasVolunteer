@@ -39,20 +39,20 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-6">
                         <h1 class="text-3xl font-bold text-white mb-2">{{ $opportunity->title }}</h1>
-                        <div class="flex items-center">
-                            <span class="px-3 py-1 text-sm font-medium rounded-full 
+                        <div class="grid items-center">
+                            <span class="px-3 py-1 text-sm font-medium rounded-full w-16 
                                 {{ $opportunity->status === 'open' ? 'bg-green-100 text-green-800' : 
                                 ($opportunity->status === 'closed' ? 'bg-red-100 text-red-800' : 
                                 'bg-yellow-100 text-yellow-800') }}">
                                 {{ ucfirst($opportunity->status) }}
                             </span>
                             @if($opportunity->organization)
-                                <span class="ml-3 text-white flex items-center">
-                                    <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                    </svg>
-                                    {{ $opportunity->organization->organization_name }}
-                                </span>
+                            <a href="{{ route('organization.show', $opportunity->organization->id) }}" class="ml-3 text-white flex items-center">
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg> 
+                                {{ $opportunity->organization->organization_name }} (voir le profile)
+                            </a>
                             @endif
                         </div>
                     </div>

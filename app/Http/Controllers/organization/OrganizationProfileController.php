@@ -78,5 +78,11 @@ class OrganizationProfileController extends Controller
                 );
                 return view('profile.organization.profile',compact('user','organization','opportunities'))->with('success', 'Profil mis à jour avec succès.');
     }
+    public function show($id)
+    {
+        $organization = Organization::with('user')->findOrFail($id);
+        $opportunities = $organization->opportunities()->get();
 
+        return view('profile.organization.readonly', compact('organization', 'opportunities'));
+    }
 }

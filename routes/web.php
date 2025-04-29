@@ -39,9 +39,11 @@ Route::post('/email/verification-notification', function (Request $request) {
 // routes accessible for every one 
 Route::get('/home', [OpporunityController::class, 'list'])->name('home');
 Route::get('/opportunities/{id}',[OpporunityController::class, 'show'])->name('opportunities.show');
-
 Route::get('/donations', [DonationController::class, 'index'])->name('donation.index');
 Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donation.show');
+
+Route::get('/organization/{id}', [OrganizationProfileController::class, 'show'])->name('organization.show');
+Route::get('/user/{id}/profile', [ProfileController::class, 'show'])->name('user.profile');
 
 Route::get('/register/{role}', [AuthController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('/register/volunteer', [AuthController::class, 'registerVolunteer'])->name('register.volunteer');

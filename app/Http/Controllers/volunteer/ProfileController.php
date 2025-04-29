@@ -77,4 +77,10 @@ class ProfileController extends Controller
         
         return view('profile.volunteer.profile', compact('user', 'volunteer'))->with('success', 'Profil mis à jour avec succès.');
     }
+
+    public function show($id)
+    {
+        $user = User::with('volunteer', 'organizations')->findOrFail($id);
+        return view('profile.volunteer.readonly', compact('user'));
+    }
 }
