@@ -35,7 +35,7 @@
             <!-- Cover Image Header -->
             @if($opportunity->cover)
                 <div class="relative h-64 w-full">
-                    <img src="{{ asset('storage/' . $opportunity->cover) }}" alt="{{ $opportunity->title }}" class="w-full h-full object-cover">
+                    <img src="{{ $opportunity->cover ? asset('storage/' . $opportunity->cover) : asset('images/default.jpg') }}" alt="{{ $opportunity->title }}" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-6">
                         <h1 class="text-3xl font-bold text-white mb-2">{{ $opportunity->title }}</h1>
@@ -72,7 +72,7 @@
                                 <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                 </svg>
-                                {{ $opportunity->organization }}
+                                {{ $opportunity->organization->organization_name }}
                             </span>
                         @endif
                     </div>

@@ -81,9 +81,9 @@
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="/" class="{{ request()->is('/') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600 hover:text-indigo-600' }} transition">Accueil</a>
                     <a href="/about" class="{{ request()->is('about') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600 hover:text-indigo-600' }} transition">À propos</a>
+                    <a href="/contact" class="{{ request()->is('contact') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600 hover:text-indigo-600' }} transition">Contact</a>
                     <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600 hover:text-indigo-600' }} transition">Opportunités</a>
                     <a href="{{ route('donation.index') }}" class="{{ request()->routeIs('donation.index') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600 hover:text-indigo-600' }} transition">Dons</a>
-                    <a href="/contact" class="{{ request()->is('contact') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600 hover:text-indigo-600' }} transition">Contact</a>
                     @auth
                         <a href="{{ auth()->user()->role === 'volunteer' ? route('profile.index') : route('organization.index') }}" 
                         class="{{ request()->routeIs('profile.index') || request()->routeIs('organization.index') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600 hover:text-indigo-600' }} transition">
@@ -122,9 +122,9 @@
             <div id="mobileMenu" class="md:hidden hidden flex-col space-y-4 py-4">
                 <a href="/" class="block text-gray-700 hover:text-indigo-600">Accueil</a>
                 <a href="/about" class="block text-gray-700 hover:text-indigo-600">À propos</a>
+                <a href="/contact" class="block text-gray-700 hover:text-indigo-600">contact</a>
                 <a href="{{ route('home') }}" class="block text-gray-700 hover:text-indigo-600">Opportunités</a>
                 <a href="{{ route('donation.index') }}" class="block text-gray-700 hover:text-indigo-600">Dons</a>
-                <a href="/contact" class="block text-gray-700 hover:text-indigo-600">contact</a>
                 @auth
                     <a href="{{ auth()->user()->role === 'volunteer' ? route('profile.index') : route('organization.index') }}" class="block text-gray-700 hover:text-indigo-600">Profil</a>
                     <a href="{{ route('messages.index') }}" class="block text-gray-700 hover:text-indigo-600">Messages</a>

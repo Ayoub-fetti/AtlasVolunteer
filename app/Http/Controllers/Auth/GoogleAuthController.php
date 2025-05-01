@@ -32,7 +32,7 @@ class GoogleAuthController extends Controller
                 'user_id' => $user->id,
             ]);
 
-
+            $user->sendEmailVerificationNotification();
             Auth::login($user);
 
             return redirect()->route('home')->with('success', 'Logged in with Google successfully!');

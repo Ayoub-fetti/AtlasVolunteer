@@ -17,7 +17,9 @@ class DonationController extends Controller
     // pour lister toutes les donations dans la page principale
     public function index()
     {
-        $donations = Donation::with(['location'])->paginate(10);
+        $donations = Donation::with(['location'])
+        ->orderBy('id', 'desc')
+        ->paginate(10);
         return view('donation.donations', compact('donations'));
     }
 
