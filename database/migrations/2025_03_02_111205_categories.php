@@ -14,12 +14,12 @@ return new class extends Migration
             $table->timestamps();
         });
         
-        // Pivot table 
-        Schema::create('category_opportunity', function (Blueprint $table) {
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('opportunity_id')->constrained()->onDelete('cascade');
-            $table->primary(['category_id', 'opportunity_id']);
-        });
+        // // Pivot table 
+        // Schema::create('category_opportunity', function (Blueprint $table) {
+        //     $table->foreignId('category_id')->constrained()->onDelete('cascade');
+        //     $table->foreignId('opportunity_id')->constrained()->onDelete('cascade');
+        //     $table->primary(['category_id', 'opportunity_id']);
+        // });
     }
 
     public function down(): void

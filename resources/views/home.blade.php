@@ -44,13 +44,13 @@
                 @foreach($opportunities as $opportunity)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
                         <img 
-                            src="{{ asset('storage/' . $opportunity->cover )}}" 
+                        src="{{ $opportunity->cover ? asset('storage/' . $opportunity->cover) : asset('images/default.jpg') }}"  
                             alt="{{ $opportunity->title }}" 
                             class="w-full h-48 object-cover"
                         >
                         <div class="p-4">
                             <h3 class="text-lg font-semibold text-gray-900">{{ $opportunity->title }}</h3>
-                            <p class="mt-2 text-gray-600">{{ $opportunity->description }}</p>
+                            <p class="mt-2 text-gray-600">{{ \Illuminate\Support\Str::words($opportunity->description, 3, '...') }}</p>
                             
                             <div class="mt-4 flex flex-wrap gap-2">
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-200 text-green-800">

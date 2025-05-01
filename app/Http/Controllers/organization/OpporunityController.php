@@ -40,7 +40,7 @@ class OpporunityController extends Controller
 
     }
     public function list() {
-        $opportunities = Opportunity::with(['categories', 'location'])->paginate(10);
+        $opportunities = Opportunity::with(['categories', 'location'])->orderBy('id','desc')->paginate(10);
         return view('home', compact('opportunities'));
     }
 
@@ -86,7 +86,6 @@ class OpporunityController extends Controller
                 'state' => $request->state,
                 'country' => $request->country,
                 'required_volunteers' => $request->required_volunteers,
-                'is_remote' => $request->is_remote ?? true,
                 'status' => $request->status,
             ]);
             // Envoyer une notification a tous les benevoles
@@ -212,14 +211,20 @@ class OpporunityController extends Controller
         
         // Update the registered_volunteers count when the application is approved
         if ($request->status === 'approved' && $oldStatus !== 'approved') {
-            // Increment registered_volunteers count
             $opportunity->increment('registered_volunteers');
         } 
-        // If the application was previously approved but now rejected, decrement the count
         elseif ($oldStatus === 'approved' && $request->status !== 'approved') {
-            // Make sure not to go below zero
             if ($opportunity->registered_volunteers > 0) {
                 $opportunity->decrement('registered_volunteers');
+            }
+        }
+
+        // Add hours_served to the user's total_hours in volunteer_profiles
+        if ($request->hours_served) {
+            $volunteerProfile = $application->user->volunteer;
+            if ($volunteerProfile) {
+                $volunteerProfile->total_hours += $request->hours_served;
+                $volunteerProfile->save();
             }
         }
 

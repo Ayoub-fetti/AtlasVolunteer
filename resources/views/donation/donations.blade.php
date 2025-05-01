@@ -65,8 +65,7 @@
                                     {{ ucfirst($donation->status) }}
                                 </span>
                             </div>
-                            
-                            <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ $donation->description }}</p>
+                            <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ \Illuminate\Support\Str::words($donation->description, 3, '...')  }}</p>
                             
                             @if($donation->location)
                                 <div class="flex items-center text-gray-500 text-sm mb-4">
