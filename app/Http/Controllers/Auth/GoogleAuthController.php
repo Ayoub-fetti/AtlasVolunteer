@@ -35,7 +35,7 @@ class GoogleAuthController extends Controller
             $user->sendEmailVerificationNotification();
             Auth::login($user);
 
-            return redirect()->route('home')->with('success', 'Logged in with Google successfully!');
+            return redirect()->route('home');
         } catch (\Exception $e) {
             return redirect()->route('login.form')->with('error', 'Failed to authenticate with Google.');
         }
