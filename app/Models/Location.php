@@ -10,8 +10,6 @@ class Location extends Model
 
     protected $fillable = [
         'place_name',
-        'longitude',
-        'latitude',
     ];
     public function opportunity()
     {
